@@ -11,5 +11,6 @@
 # 代理列表
 
 # 域名
+DOMAIN, google.com
 DOMAIN, codepen.io
 DOMAIN, deepl.com
