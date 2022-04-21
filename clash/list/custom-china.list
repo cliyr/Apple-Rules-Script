@@ -10,5 +10,11 @@
 #
 # 直连列表
 
+
+# 域名后缀匹配
+## xmind 国内服务
+DOMAIN-SUFFIX, xmind.cn
+
+
 # 关键词直连
 DOMAIN-KEYWORD, gitee
