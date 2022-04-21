@@ -19,6 +19,7 @@ DOMAIN, deepl.com,
 # 域名后缀匹配
 ## Mozilla VPN 服务 API
 DOMAIN-SUFFIX, mozgcp.net
+DOMAIN-SUFFIX, xmind.net # xmind 海外服务
 
 
 # 域名关键字匹配
