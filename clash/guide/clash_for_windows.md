@@ -44,12 +44,16 @@ mixin: # object
     enable: true
     stack: system
     dns-hijack: # DNS 劫持
-      # - any:53
-      - 1.1.1.1
-      - 114.114.114.114
+      - any:53
+      # - 1.1.1.1
+      # - 114.114.114.114
     auto-route: true
     auto-detect-interface: true
 
 ```
 
-- 其中的 dns.listen 在使用 TUN 模式时，可以不配置。
+- dns.listen 在使用 TUN 模式时，可以不配置。
+- tun.
+  - dns-hijack
+    - any:53，在 Clash Premium 2022.04.17 版本中支持该选项。以直接劫持所有的系统 DNS，并直接有 Clash 中配置的 DNS 接管。
+    - 1.1.1.1， 在 Clash Premium 2022.04.17 之前的版本中必须写明所有的系统 DNS 以劫持，进而才能让 Clash 中配置的 DNS 接管。
