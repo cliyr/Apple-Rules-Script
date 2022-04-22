@@ -57,3 +57,16 @@ mixin: # object
   - dns-hijack
     - any:53，在 Clash Premium 2022.04.17 版本中支持该选项。以直接劫持所有的系统 DNS，并直接有 Clash 中配置的 DNS 接管。
     - 1.1.1.1， 在 Clash Premium 2022.04.17 之前的版本中必须写明所有的系统 DNS 以劫持，进而才能让 Clash 中配置的 DNS 接管。
+
+## 控制面板
+
+General => Clash Core => 点击版本号，可唤起 clash.razord.top 的控制面板。
+
+但假如是全新的登陆，默认的端口号和密码是错误的，或为空。需要重新配置，不然无法进入控制面板。
+
+而端口号和密码，在浏览器地址栏中的参数中可以找到。
+
+- 端口： port
+- 密码： secret
+
+复制粘贴具体的参数值即可。
