@@ -1,0 +1,12 @@
+name: 重定向
+desc: 常用 HTTPS 重定向
+
+http:
+  mitm:
+    - g.cn
+    - "*.google.cn"
+    - "www.firefox.com.cn"
+  rewrite:
+    - ^http?:\/\/(www.)?jd\.com\/ https://www.jd.com/ 302
+    - ^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 302
+    - ^https?:\/\/(www.)?firefox\.com\.cn\/(download\/)?$ https://www.mozilla.org/zh-CN/firefox/new/ 302
