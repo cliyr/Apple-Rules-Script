@@ -1,5 +1,5 @@
 name: 重定向
-desc: 常用 HTTPS 重定向
+desc: 自用 HTTPS 重定向
 
 http:
   mitm:
