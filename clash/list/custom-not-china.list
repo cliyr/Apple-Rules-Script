@@ -13,7 +13,6 @@
 # 域名匹配
 DOMAIN, google.com
 DOMAIN, codepen.io
-DOMAIN, deepl.com,
 
 
 # 域名后缀匹配
@@ -21,6 +20,8 @@ DOMAIN, deepl.com,
 DOMAIN-SUFFIX, mozgcp.net
 ## xmind 海外服务
 DOMAIN-SUFFIX, xmind.net
+DOMAIN-SUFFIX, deepl.com
+
 
 # 域名关键字匹配
 DOMAIN-KEYWORD, firefox
