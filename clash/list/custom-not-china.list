@@ -11,7 +11,8 @@
 # 代理列表
 
 # 域名匹配
-
+## Visual Studio Code Experiment Service，用于提供实验性的用户体验
+DOMAIN, default.exp-tas.com
 
 # 域名后缀匹配
 ## Mozilla VPN 服务 API
