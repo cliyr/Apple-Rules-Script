@@ -1,3 +1,10 @@
+################################################################################
+# 配置参考
+# - https://github.com/Infatuation-Fei/rule/blob/main/Stash/配置模板/Config-Stash.yaml
+# 规则参考
+# - https://github.com/DivineEngine/Profiles/tree/master/Clash/RuleSet
+################################################################################
+
 # 将 proxy-providers 里面链接中的“你的订阅链接”替换即可
 
 mixed-port: 7890
