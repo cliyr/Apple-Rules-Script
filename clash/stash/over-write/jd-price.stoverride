@@ -13,5 +13,5 @@ http:
 
 script-providers:
   JDPrice:
-    url: https://raw.githubusercontent.com/QuentinHsu/Apple-Rules-Script/main/script/jd-price.js
+    url: https://raw.githubusercontent.com/githubdulong/Script/master/jd_price.js
     interval: 3600
