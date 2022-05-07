@@ -1,4 +1,3 @@
-// 脚本源地址：https://github.com/githubdulong/Script/blob/master/jd_price.js
 const path1 = "serverConfig";
 const path2 = "wareBusiness";
 const path3 = "basicConfig";
