@@ -163,7 +163,7 @@ function historySummary(single) {
 function difference(currentPrice, price) {
   let difference = sub(currentPrice, price);
   if (difference == 0) {
-    return "-";
+    return "持平";
   } else {
     return `${difference > 0 ? "↑" : "↓"}${String(difference)}`;
   }
