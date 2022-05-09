@@ -9,7 +9,8 @@ http:
       name: boxjs
       type: request
       require-body: true
-      timeout: 10
+      timeout: 120
+
 
 script-providers:
   boxjs:
