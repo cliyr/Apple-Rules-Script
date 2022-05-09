@@ -6,7 +6,7 @@ hostname = home.mi.com
 console.log('🎉 米家-我的 去除 Banner 脚本--开始--执行')
 let { body } = $response;
 const obj = JSON.parse(body);
-console.log('obj.module.name', obj.module.name);
+console.log('obj.data.module.name', obj.data.module.name);
 obj.data.banners = [];
 body = JSON.stringify(obj);
 $done({body});
