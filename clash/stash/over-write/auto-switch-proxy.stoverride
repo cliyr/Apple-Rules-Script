@@ -8,7 +8,7 @@ proxy-groups:
       - 🚀 节点选择
       - DIRECT
     ssid-policy:
-      office1_5GHz: DIRECT
+      Office1_5GHz: DIRECT
       cellular: 🚀 节点选择
       default: 🚀 节点选择
   - name: Domestic
@@ -17,6 +17,6 @@ proxy-groups:
       - 🚀 节点选择
       - DIRECT
     ssid-policy:
-      office1_5GHz: DIRECT
+      Office1_5GHz: DIRECT
       cellular: DIRECT
       default: DIRECT
