@@ -1,20 +1,22 @@
 name: Auto Swicth Proxy
 desc: 自动切换代理
-- name: Abroad
-  type: select
-  proxies:
-    - 🚀 节点选择
-    - DIRECT
-  ssid-policy:
-    office1_5GHz: DIRECT
-    cellular: 🚀 节点选择
-    default: 🚀 节点选择
-- name: Domestic
-  type: select
-  proxies:
-    - 🚀 节点选择
-    - DIRECT
-  ssid-policy:
-    office1_5GHz: DIRECT
-    cellular: DIRECT
-    default: DIRECT
+
+proxies:
+  - name: Abroad
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+    ssid-policy:
+      office1_5GHz: DIRECT
+      cellular: 🚀 节点选择
+      default: 🚀 节点选择
+  - name: Domestic
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+    ssid-policy:
+      office1_5GHz: DIRECT
+      cellular: DIRECT
+      default: DIRECT
