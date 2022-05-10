@@ -1,0 +1,9 @@
+name: AD-天府通
+desc: 去除广告图
+
+http:
+  mitm:
+    - "ams-cdn.cdtft.cn"
+  rewrite:
+    - ^http:\/\/ams-cdn\.cdtft\.cn\/prod - reject
+    - ^https:\/\/ams-cdn\.cdtft\.cn\/prod - reject
