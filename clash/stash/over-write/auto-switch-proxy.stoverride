@@ -1,7 +1,7 @@
 name: Auto Swicth Proxy
 desc: 自动切换代理
 
-proxies:
+proxy-groups:
   - name: Abroad
     type: select
     proxies:
