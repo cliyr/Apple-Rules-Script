@@ -5,5 +5,4 @@ http:
   mitm:
     - "ams-cdn.cdtft.cn"
   rewrite:
-    - ^http:\/\/ams-cdn\.cdtft\.cn\/prod - reject
-    - ^https:\/\/ams-cdn\.cdtft\.cn\/prod - reject
+    - ^https?:\/\/ams-cdn\.cdtft\.cn\/prod - reject
