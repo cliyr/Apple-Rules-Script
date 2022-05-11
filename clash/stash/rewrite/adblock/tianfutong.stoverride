@@ -3,6 +3,15 @@ desc: 去除广告图
 
 http:
   mitm:
-    - "ams-cdn.cdtft.cn"
+    - "*.cdtft.cn"
+    - "api-access.pangolin-sdk-toutiao.com"
+    - "api-fc.dutils.com"
+    - "*.pglstatp-toutiao.com"
   rewrite:
     - ^https?:\/\/ams-cdn\.cdtft\.cn\/prod - reject
+    - ^https:\/\/metroact.cdtft.cn\/apkpex\/app\/layout\/getAppLayoutConfig - reject
+    - ^https:\/\/metroact\.cdtft\.cn\/gateway\/tftapp\/tft-ams\/api\/appAd\/getOfficialAndBakAdvByPositionCode - reject
+    - ^https:\/\/metroact\.cdtft\.cn\/apkpex\/app\/function\/getHomeFunctionList - reject
+    - ^https:\/\/api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/sdk\/get_ads - reject
+    - ^http:\/\/api-fc\.dutils\.com\/privacy\/policy - reject
+    - ^https:\/\/sf3-fe-tos\.pglstatp-toutiao\.com\/obj\/ad-pattern - reject
