@@ -2,6 +2,9 @@ name: AD-天府通
 desc: 去除广告图
 
 http:
+  force-http-engine:
+    - "*.cdtft.cn"
+    - "api-fc.dutils.com"
   mitm:
     - "*.cdtft.cn"
     - "api-access.pangolin-sdk-toutiao.com"
