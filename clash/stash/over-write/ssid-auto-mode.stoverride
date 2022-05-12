@@ -1,0 +1,13 @@
+name: Auto Swicth Proxy
+desc: 自动切换代理
+
+proxy-groups:
+  - name: 🚦 SSID Auto Mode
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+    ssid-policy:
+      HedyLamarr: DIRECT
+      cellular: 🚀 节点选择
+      default: 🚀 节点选择
