@@ -8,9 +8,13 @@ dns:
   enhanced-mode: fake-ip # stash 上只能 fake-ip
   nameserver:
     - https://dns.alidns.com/dns-query
-  # 默认不启用 fallback。如需使用，自行本地修改该配置
+  # 默认不启用 fallback 及相关配置。如需使用，自行本地修改该配置
   #fallback:
   #  - https://*******.d.adguard-dns.com/dns-query
   #fallback-filter:
   #  geoip: true
   #  geoip-code: CN
+
+# 备注
+# GEOIP 数据库：
+#   - https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb
