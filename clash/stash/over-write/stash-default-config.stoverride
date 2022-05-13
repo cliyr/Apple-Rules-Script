@@ -1,0 +1,30 @@
+name: Stash 默认配置
+desc: 通过覆写注入自定义配置
+
+log-level: debug
+dns:
+  enable: true
+  ipv6: false # stash 上，该配置无效（2022.5.13）
+  listen: 0.0.0.0:53
+  enhanced-mode: fake-ip # stash 上只能 fake-ip
+  nameserver:
+    - https://dns.alidns.com/dns-query
+  # 默认不启用 fallback 及相关配置。如需使用，自行本地修改该配置
+  #fallback:
+  #  - https://*******.d.adguard-dns.com/dns-query
+  #fallback-filter:
+  #  geoip: true
+  #  geoip-code: CN
+
+# 备注
+# GEOIP 数据库：
+#   - https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb
+
+http:
+  mitm:
+    - g.cn
+    - "*.google.cn"
+    - "www.firefox.com.cn"
+  rewrite:
+    - ^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 302
+    - ^https?:\/\/(www.)?firefox\.com\.cn\/(download\/)?$ https://www.mozilla.org/zh-CN/firefox/new/ 302
