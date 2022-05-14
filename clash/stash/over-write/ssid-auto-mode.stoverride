@@ -5,9 +5,12 @@ proxy-groups:
   - name: 🚦 SSID Auto Mode
     type: select
     proxies:
+    # 此处为配置文件中的已有策略组
       - 🚀 节点选择
       - DIRECT
     ssid-policy:
+    # cellular: 保留字，指代蜂窝数据条件下
+    # default：保留字，指代其他条件下
       HedyLamarr: DIRECT
       cellular: 🚀 节点选择
       default: 🚀 节点选择
