@@ -7,6 +7,7 @@ proxy-groups:
     proxies:
     # 此处为配置文件中的已有策略组
       - 🚀 节点选择
+      - DIRECT  # 虽说 DIRECT 是保留字。但必须配置该策略选项，于此代理集的 proxies 下，不然该代理集就只有 1 个策略选项
     ssid-policy:
     # cellular: 保留字，指代蜂窝数据条件下
     # default：保留字，指代其他 SSID 条件下，默认为 DIRECT 策略
