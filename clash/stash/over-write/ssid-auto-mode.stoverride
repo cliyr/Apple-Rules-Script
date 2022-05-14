@@ -1,5 +1,5 @@
-name: Auto Swicth Proxy
-desc: 自动切换代理
+name: SSID Auto Mode
+desc: 依据 SSID 自动切换代理/直连策略
 # 必须搭配专门的 Stash 订阅转换配置才可以正常使用
 proxy-groups:
   - name: 🚦 SSID Auto Mode
