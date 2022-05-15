@@ -1,0 +1,16 @@
+name: AD-米家
+desc: 去除广告图
+
+http:
+  mitm:
+    - "home.mi.com"
+  script:
+    - match: ^https:\/\/home\.mi\.com\/cgi-op\/api\/v1\/recommendation\/myTab
+      name: ad-mijia-my-myTab
+      type: response
+      require-body: true
+      timeout: 10
+script-providers:
+  ad-mijia-my-myTab:
+    url: https://raw.githubusercontent.com/QuentinHsu/Apple-Rules-Script/main/script/Mijia/my-tab-banner.js
+    interval: 3456000
