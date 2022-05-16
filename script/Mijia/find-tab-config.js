@@ -1,4 +1,6 @@
 console.log("🎉 米家 - 发现页 -- 开始");
+console.log($response.body)
+console.log('$response.body', $response.body)
 let { body } = $response;
 const response = JSON.parse(body);
 console.log("[ response ]-5", JSON.stringify(response))
