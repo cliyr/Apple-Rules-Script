@@ -3,7 +3,6 @@
 # create: 2022/05/18
 # update: 2022/05/19
 
-IP-CIDR, 5.28.195.0/20, no-resolve
 IP-CIDR, 95.161.64.0/20, no-resolve
 IP-CIDR6, 2001:b28:f23c::/47, no-resolve
 IP-CIDR6, 2a0a:f280:203::/48, no-resolve
