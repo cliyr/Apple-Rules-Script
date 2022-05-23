@@ -4,6 +4,8 @@
 // @version      1.0
 // @description  直达目标页，现支持掘金、简书、知乎
 // @author       QuentinHsu
+// @updateURL    https://raw.githubusercontent.com/QuentinHsu/Apple-Rules-Script/main/tampermonkey/direct-to-target-page.js
+// @downloadURL  https://raw.githubusercontent.com/QuentinHsu/Apple-Rules-Script/main/tampermonkey/direct-to-target-page.js
 // @match        https://link.juejin.cn/?target=*
 // @match        https://www.jianshu.com/go-wild?ac=2&url=*
 // @match        https://link.zhihu.com/?target=*
