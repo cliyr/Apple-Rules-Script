@@ -7,8 +7,9 @@ dns:
   ipv6: false # stash 上，该配置无效（2022.5.13）
   listen: 0.0.0.0:53
   enhanced-mode: fake-ip # stash 上只能 fake-ip
-  nameserver:
-    - https://dns.alidns.com/dns-query
+  # 由于 stash v1.6.* 的直连模式下仍会使用 stash 内设置的 dns，这在可科学上网的网络下造成海外 http/s 类请求异常。所以暂时不自定义 dns。
+  #nameserver:
+  #  - https://dns.alidns.com/dns-query
   # 默认不启用 fallback 及相关配置。如需使用，自行本地修改该配置
   #fallback:
   #  - https://*******.d.adguard-dns.com/dns-query
