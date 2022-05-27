@@ -1,7 +1,7 @@
 name: Stash 默认配置
 desc: 通过覆写注入自定义配置
 
-log-level: debug
+log-level: info
 dns:
   enable: true
   ipv6: false # stash 上，该配置无效（2022.5.13）
