@@ -86,7 +86,7 @@ proxies:
 proxy-groups:
   - name: 节点选择
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/Other/Qure_Preview_All.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
     proxies:
       - 自动选择
       - 手动切换
