@@ -322,7 +322,7 @@ rules:
   # - RULE-SET,NetEaseMusic,网易音乐
   # - RULE-SET,BiliBili,哔哩哔哩
   - RULE-SET,Game,游戏平台
-  - RULE-SET,Global,Global Proxy
+  - RULE-SET,Global Proxy,Global Proxy
   - RULE-SET,China,国内网站
   - RULE-SET,Lan,DIRECT
   - GEOIP,CN,国内网站
