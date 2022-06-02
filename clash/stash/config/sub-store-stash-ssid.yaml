@@ -85,6 +85,21 @@ proxies:
 
 proxy-groups:
 
+  - name: SSID Auto Mode
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/SSID.png
+    proxies:
+    # 此处为配置文件中的已有策略组
+      - 节点选择
+      - DIRECT  # 虽说 DIRECT 是保留字。但必须配置该策略选项，于此代理集的 proxies 下，不然该代理集就只有 1 个策略选项
+    ssid-policy:
+    # cellular: 保留字，指代蜂窝数据条件下
+    # default：保留字，指代其他 SSID 条件下，默认为 DIRECT 策略
+    # DIRECT：保留字，直连策略
+      HedyLamarr: DIRECT  # HedyLamarr，为 SSID 名称
+      cellular: 节点选择
+      default: 节点选择
+
   - name: 节点选择
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
@@ -102,10 +117,10 @@ proxy-groups:
   - name: 自动选择
     type: url-test
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
-    use:
-       - All
     url: "http://www.gstatic.com/generate_204"
     interval: 300
+    use:
+       - All
 
   - name: 故障转移
     type: fallback
@@ -119,7 +134,7 @@ proxy-groups:
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png
     proxies: &G
-      - 节点选择
+      - SSID Auto Mode
       - DIRECT
       - 香港节点
       - 日本节点
@@ -131,7 +146,7 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China_Map.png
     proxies: &C
       - DIRECT
-      - 节点选择
+      - SSID Auto Mode
 
   - name: Telegram
     type: select
