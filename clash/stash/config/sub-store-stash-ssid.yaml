@@ -97,9 +97,6 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
     use:
       - All
-    # proxies:
-    #   - 自动选择
-    #   - 故障转移
 
   - name: 自动选择
     type: url-test
@@ -128,7 +125,7 @@ proxy-groups:
       - 美国节点
       - 台湾节点
 
-  - name: 国内网站
+  - name: Global Direct
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China_Map.png
     proxies: &C
@@ -147,49 +144,21 @@ proxy-groups:
     proxies:
       *G
 
-  # - name: YouTube
-  #   type: select
-  #   icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
-  #   proxies:
-  #     *G
 
-  # - name: NETFLIX
-  #   type: select
-  #   icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png
-  #   proxies:
-  #     *G
 
-  # - name: Disney+
-  #   type: select
-  #   icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/DisneyPlus.png
-  #   proxies:
-  #     *G
-
-  - name: 苹果服务
+  - name: Apple
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png
     proxies:
       *C
 
-  - name: 微软服务
+  - name: Microsoft
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png
     proxies:
       *C
 
-  # - name: 网易音乐
-  #   type: select
-  #   icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netease_Music.png
-  #   proxies:
-  #     - DIRECT
-
-  # - name: 哔哩哔哩
-  #   type: select
-  #   icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili_3.png
-  #   proxies:
-  #     *C
-
-  - name: 游戏平台
+  - name: Game
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png
     proxies:
@@ -261,27 +230,6 @@ rule-providers:
     path: ./ruleset/Twitter.yaml
     interval: 86400
 
-  # YouTube:
-  #   type: http
-  #   behavior: classical
-  #   url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml"
-  #   path: ./ruleset/YouTube.yaml
-  #   interval: 86400
-
-  # Netflix:
-  #   type: http
-  #   behavior: classical
-  #   url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix.yaml"
-  #   path: ./ruleset/Netflix.yaml
-  #   interval: 86400
-
-  # Disney:
-  #   type: http
-  #   behavior: classical
-  #   url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Disney/Disney.yaml"
-  #   path: ./ruleset/Disney.yaml
-  #   interval: 86400
-
   Apple:
     type: http
     behavior: classical
@@ -295,20 +243,6 @@ rule-providers:
     url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.yaml"
     path: ./ruleset/Microsoft.yaml
     interval: 86400
-
-  # NetEaseMusic:
-  #   type: http
-  #   behavior: classical
-  #   url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/NetEaseMusic/NetEaseMusic.yaml"
-  #   path: ./ruleset/NetEaseMusic.yaml
-  #   interval: 86400
-
-  # BiliBili:
-  #   type: http
-  #   behavior: classical
-  #   url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili.yaml"
-  #   path: ./ruleset/BiliBili.yaml
-  #   interval: 86400
 
   Game:
     type: http
@@ -343,16 +277,11 @@ rules:
   - RULE-SET,Adblock-Domain,AdBlock
   - RULE-SET,Telegram,Telegram
   - RULE-SET,Twitter,Twitter
-  # - RULE-SET,YouTube,YouTube
-  # - RULE-SET,Netflix,NETFLIX
-  # - RULE-SET,Disney,Disney+
-  - RULE-SET,Apple,苹果服务
-  - RULE-SET,Microsoft,微软服务
-  # - RULE-SET,NetEaseMusic,网易音乐
-  # - RULE-SET,BiliBili,哔哩哔哩
-  - RULE-SET,Game,游戏平台
+  - RULE-SET,Apple,Apple
+  - RULE-SET,Microsoft,Microsoft
+  - RULE-SET,Game,Game
   - RULE-SET,Global Proxy,Global Proxy
-  - RULE-SET,China,国内网站
+  - RULE-SET,China,Global Direct
   - RULE-SET,Lan,DIRECT
-  - GEOIP,CN,国内网站
+  - GEOIP,CN,Global Direct
   - MATCH,漏网之鱼
