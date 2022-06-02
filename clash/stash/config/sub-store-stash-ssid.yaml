@@ -175,7 +175,7 @@ proxy-groups:
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png
     proxies:
-      *G
+      *C
 
   # - name: 网易音乐
   #   type: select
