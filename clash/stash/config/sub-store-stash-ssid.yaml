@@ -117,7 +117,7 @@ proxy-groups:
   - name: Global Proxy
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png
-    proxies: &G
+    proxies: &GP
       - SSID Auto Mode
       - DIRECT
       - 香港节点
@@ -128,7 +128,7 @@ proxy-groups:
   - name: Global Direct
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China_Map.png
-    proxies: &C
+    proxies: &GD
       - DIRECT
       - SSID Auto Mode
 
@@ -143,31 +143,31 @@ proxy-groups:
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png
     proxies:
-      *G
+      *GP
 
   - name: Twitter
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png
     proxies:
-      *G
+      *GP
 
   - name: Apple
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png
     proxies:
-      *C
+      *GD
 
   - name: Microsoft
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png
     proxies:
-      *C
+      *GD
 
   - name: Game
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png
     proxies:
-      *G
+      *GP
 
   - name: AD Block
     type: select
