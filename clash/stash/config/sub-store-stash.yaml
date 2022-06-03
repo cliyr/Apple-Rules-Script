@@ -5,7 +5,6 @@
 # - https://github.com/DivineEngine/Profiles/tree/master/Clash/RuleSet
 ################################################################################
 # autocorrect-disable
-# 将proxy-providers里面链接中的“你的订阅链接”替换即可
 
 mixed-port: 7890
 allow-lan: true
@@ -14,6 +13,53 @@ mode: rule
 log-level: info
 ipv6: true
 external-controller: 127.0.0.1:9090
+
+dns:
+  enable: true
+  ipv6: true
+  listen: 0.0.0.0:53
+  default-nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*.lan'
+    - localhost.ptlogin2.qq.com
+    - '+.srv.nintendo.net'
+    - '+.stun.playstation.net'
+    - '+.msftconnecttest.com'
+    - '+.msftncsi.com'
+    - '+.xboxlive.com'
+    - 'msftconnecttest.com'
+    - 'xbox.*.microsoft.com'
+    - '*.battlenet.com.cn'
+    - '*.battlenet.com'
+    - '*.blzstatic.cn'
+    - '*.battle.net'
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+
+http:
+  mitm:
+    - g.cn
+    - "*.google.cn"
+    - "www.firefox.com.cn"
+    - sub.store
+  script:
+    - match: ^https?:\/\/sub\.store
+      name: sub-store
+      type: request
+      require-body: true
+      timeout: 120
+  rewrite:
+    - ^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 302
+    - ^https?:\/\/(www.)?firefox\.com\.cn\/(download\/)?$ https://www.mozilla.org/zh-CN/firefox/new/ 302
+script-providers:
+  sub-store:
+    url: https://raw.githubusercontent.com/Peng-YM/Sub-Store/master/backend/sub-store.min.js
+    interval: 86400
 
 # 假如用组合订阅多个机场，就没必要使用 subscribe-url 了
 subscribe-url: https://sub.store/download/collection/subs
@@ -54,32 +100,6 @@ proxy-providers:
     <<: *All
     filter: 台|🇨🇳|🇹🇼|湾|TW|(?i)Taiwan
 
-dns:
-  enable: true
-  ipv6: true
-  listen: 0.0.0.0:53
-  default-nameserver:
-    - 119.29.29.29
-    - 223.5.5.5
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - '*.lan'
-    - localhost.ptlogin2.qq.com
-    - '+.srv.nintendo.net'
-    - '+.stun.playstation.net'
-    - '+.msftconnecttest.com'
-    - '+.msftncsi.com'
-    - '+.xboxlive.com'
-    - 'msftconnecttest.com'
-    - 'xbox.*.microsoft.com'
-    - '*.battlenet.com.cn'
-    - '*.battlenet.com'
-    - '*.blzstatic.cn'
-    - '*.battle.net'
-  nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
 
 proxies:
 
