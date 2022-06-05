@@ -295,8 +295,8 @@ rule-providers:
 
   Global Proxy:
     type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"
+    behavior: domain-text
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Proxy/Proxy_Domain.txt?raw=true"
     path: ./ruleset/global-proxy.yaml
     interval: 86400
 
