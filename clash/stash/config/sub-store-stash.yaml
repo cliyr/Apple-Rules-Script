@@ -63,11 +63,11 @@ script-providers:
 
 # 假如用组合订阅多个机场，就没必要使用 subscribe-url 了
 subscribe-url: https://sub.store/download/collection/subs
-#替换上面文字用于Stash获取机场流量信息并在主页显示(Stash1.6.1 build287+支持)
+# 替换上面文字用于Stash获取机场流量信息并在主页显示(Stash1.6.1 build287+支持)
 
 proxy-providers:
-  #全部节点
-  All: &All #建立锚点
+  # 全部节点
+  All: &All # 建立锚点
     type: http
     # 此处默认使用 sub-store 订阅链接，如果需要使用其他订阅链接，可以替换下面的 url 即可
     url: "https://sub.store/download/collection/subs"
@@ -80,22 +80,22 @@ proxy-providers:
       interval: 600
       url: http://www.gstatic.com/generate_204
 
-  #美国节点
+  # 美国节点
   US:
-    <<: *All #引用锚点内容
+    <<: *All # 引用锚点内容
     filter: 美|🇺🇲|US|(?i)States|American
 
-  #香港节点
+  # 香港节点
   HK:
     <<: *All
     filter: 港|🇭🇰|HK|(?i)Hong
 
-  #日本节点
+  # 日本节点
   JP:
     <<: *All
     filter: 日|🇯🇵|东京|JP|(?i)Japan
 
-  #台湾节点
+  # 台湾节点
   TW:
     <<: *All
     filter: 台|🇨🇳|🇹🇼|湾|TW|(?i)Taiwan
@@ -140,10 +140,10 @@ proxy-groups:
     proxies: &GP
       - SSID Auto Mode
       - DIRECT
-      - 香港节点
-      - 日本节点
-      - 美国节点
-      - 台湾节点
+      - Hong Kong
+      - Japan
+      - America
+      - Tai Wan
 
   - name: Global Direct
     type: select
@@ -211,25 +211,25 @@ proxy-groups:
     use:
       - All
 
-  - name: 香港节点
+  - name: Hong Kong
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
     use:
       - HK
 
-  - name: 日本节点
+  - name: Japan
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
     use:
       - JP
 
-  - name: 台湾节点
+  - name: Tai Wan
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Tai Wan.png
     use:
       - TW
 
-  - name: 美国节点
+  - name: America
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
     use:
