@@ -110,25 +110,25 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/SSID.png
     proxies:
     # 此处为配置文件中的已有策略组
-      - 节点选择
+      - Server Strategy
       - DIRECT  # 虽说 DIRECT 是保留字。但必须配置该策略选项，于此代理集的 proxies 下，不然该代理集就只有 1 个策略选项
     ssid-policy:
     # cellular: 保留字，指代蜂窝数据条件下
     # default：保留字，指代其他 SSID 条件下，默认为 DIRECT 策略
     # DIRECT：保留字，直连策略
       HedyLamarr: DIRECT  # HedyLamarr，为 SSID 名称
-      cellular: 节点选择
-      default: 节点选择
+      cellular: Server Strategy
+      default: Server Strategy
 
-  - name: 节点选择
+  - name: Server Strategy
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
     proxies:
-      - 自动选择
-      - 手动切换
-      - 故障转移
+      - Auto Select
+      - Manual Select
+      - Fallback
 
-  - name: 手动切换
+  - name: Manual Select
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
     use:
@@ -152,7 +152,7 @@ proxy-groups:
       - DIRECT
       - SSID Auto Mode
 
-  - name: 漏网之鱼
+  - name: Final
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png
     proxies:
@@ -195,7 +195,7 @@ proxy-groups:
     proxies:
       - REJECT
 
-  - name: 自动选择
+  - name: Auto Select
     type: url-test
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: "http://www.gstatic.com/generate_204"
@@ -203,7 +203,7 @@ proxy-groups:
     use:
       - All
 
-  - name: 故障转移
+  - name: Fallback
     type: fallback
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png
     url: 'http://www.gstatic.com/generate_204'
@@ -319,4 +319,4 @@ rules:
   - RULE-SET,China,Global Direct
   - RULE-SET,Lan,DIRECT
   - GEOIP,CN,Global Direct
-  - MATCH,漏网之鱼
+  - MATCH,Final
