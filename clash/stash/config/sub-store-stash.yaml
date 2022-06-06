@@ -65,15 +65,19 @@ script-providers:
 subscribe-url: https://sub.store/download/collection/subs
 # 替换上面文字用于Stash获取机场流量信息并在主页显示(Stash1.6.1 build287+支持)
 
+# 远程资源默认配置
+remote-resources-default-config: &rrdc
+  type: http
+  interval: 86400
+
 proxy-providers:
   # 全部节点
   All: &All # 建立锚点
-    type: http
+    *rrdc
     # 此处默认使用 sub-store 订阅链接，如果需要使用其他订阅链接，可以替换下面的 url 即可
     url: "https://sub.store/download/collection/subs"
     # 可以使用任意类型的链接仅替换上面文字，多个链接使用英文符号的竖杠|隔开一起写上即可；
     # Sub-Store 与 Clash 类型订阅链接替换掉整个引号""内的链接
-    interval: 86400
     path: ./all.yaml
     health-check:
       enable: true
@@ -235,83 +239,83 @@ proxy-groups:
     use:
       - US
 
+
+
 rule-providers:
 
   Global Direct:
-    type: http
+    *rrdc
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Direct/Direct.yaml?raw=true"
     path: ./ruleset/global-direct.yaml
-    interval: 86400
+
 
   AD Block:
-    type: http
+    *rrdc
     behavior: domain-text
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/AdvertisingLite/AdvertisingLite_Domain.txt?raw=true"
     path: ./ruleset/ad-block.yaml
-    interval: 86400
+
 
   Telegram:
-    type: http
+    *rrdc
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Telegram/Telegram.yaml?raw=true"
     path: ./ruleset/telegram.yaml
-    interval: 86400
+
 
   Twitter:
-    type: http
+    *rrdc
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Twitter/Twitter.yaml?raw=true"
     path: ./ruleset/twitter.yaml
-    interval: 86400
+
 
   Apple:
-    type: http
+    *rrdc
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Apple/Apple.yaml?raw=true"
     path: ./ruleset/apple.yaml
-    interval: 86400
+
 
   Microsoft:
-    type: http
+    *rrdc
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Microsoft/Microsoft.yaml?raw=true"
     path: ./ruleset/microsoft.yaml
-    interval: 86400
 
   Game:
-    type: http
+    *rrdc
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Game/Game.yaml?raw=true"
     path: ./ruleset/game.yaml
-    interval: 86400
+
 
   China:
-    type: http
+    *rrdc
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/China/China.yaml?raw=true"
     path: ./ruleset/china.yaml
-    interval: 86400
+
 
   China IPs:
+    *rrdc
     behavior: ipcidr-text
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/ChinaMax/ChinaMax_IP_No_IPv6.txt?raw=true"
     path: ./ruleset/china-ips.yaml
-    interval: 86400
 
   Global Proxy:
-    type: http
+    *rrdc
     behavior: domain-text
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Proxy/Proxy_Domain.txt?raw=true"
     path: ./ruleset/global-proxy.yaml
-    interval: 86400
 
   Lan:
-    type: http
+    *rrdc
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Lan/Lan.yaml?raw=true"
     path: ./ruleset/lan.yaml
-    interval: 86400
+
 
 rules:
   - RULE-SET,Global Direct,Global Direct
