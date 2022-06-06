@@ -1,0 +1,281 @@
+################################################################################
+# 配置参考
+# - https://github.com/Infatuation-Fei/rule/blob/main/Stash/配置模板/Config-Stash.yaml
+# 规则参考
+# - https://github.com/DivineEngine/Profiles/tree/master/Clash/RuleSet
+################################################################################
+# autocorrect-disable
+
+mixed-port: 7890
+allow-lan: true
+bind-address: '*'
+mode: rule
+log-level: info
+ipv6: true
+external-controller: 127.0.0.1:9090
+
+dns:
+  enable: true
+  ipv6: true
+  listen: 0.0.0.0:53
+  default-nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*.lan'
+    - localhost.ptlogin2.qq.com
+    - '+.srv.nintendo.net'
+    - '+.stun.playstation.net'
+    - '+.msftconnecttest.com'
+    - '+.msftncsi.com'
+    - '+.xboxlive.com'
+    - 'msftconnecttest.com'
+    - 'xbox.*.microsoft.com'
+    - '*.battlenet.com.cn'
+    - '*.battlenet.com'
+    - '*.blzstatic.cn'
+    - '*.battle.net'
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+
+proxy-providers:
+  # 全部节点
+  All: &All # 建立锚点
+    type: http
+    url: "https://subconverter.api.dev/sub?target=clash&url=你的订阅链接&list=true&udp=true"
+    # 可以使用任意类型的链接仅替换上面文字，多个链接使用英文符号的竖杠|隔开一起写上即可；
+    interval: 86400
+    path: ./all.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+
+  # 美国节点
+  US:
+    <<: *All # 引用锚点内容
+    filter: 美|🇺🇲|US|(?i)States|American
+
+  # 香港节点
+  HK:
+    <<: *All
+    filter: 港|🇭🇰|HK|(?i)Hong
+
+  # 日本节点
+  JP:
+    <<: *All
+    filter: 日|🇯🇵|东京|JP|(?i)Japan
+
+  # 台湾节点
+  TW:
+    <<: *All
+    filter: 台|🇨🇳|🇹🇼|湾|TW|(?i)Taiwan
+
+
+proxies:
+
+proxy-groups:
+
+  - name: Server Strategy
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
+    proxies:
+      - Auto Select
+      - Manual Select
+      - Fallback
+
+  - name: Manual Select
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
+    use:
+      - All
+
+  - name: Global Proxy
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png
+    proxies: &GP
+      - SSID Auto Mode
+      - DIRECT
+      - Hong Kong
+      - Japan
+      - America
+      - Tai Wan
+
+  - name: Global Direct
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China_Map.png
+    proxies: &GD
+      - DIRECT
+      - SSID Auto Mode
+
+  - name: Final
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png
+    proxies:
+      - SSID Auto Mode
+      - DIRECT
+
+  - name: Telegram
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png
+    proxies:
+      *GP
+
+  - name: Twitter
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png
+    proxies:
+      *GP
+
+  - name: Apple
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png
+    proxies:
+      *GD
+
+  - name: Microsoft
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png
+    proxies:
+      *GD
+
+  - name: Game
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png
+    proxies:
+      *GP
+
+  - name: AD Block
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png
+    proxies:
+      - REJECT
+
+  - name: Auto Select
+    type: url-test
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    use:
+      - All
+
+  - name: Fallback
+    type: fallback
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+    use:
+      - All
+
+  - name: Hong Kong
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+    use:
+      - HK
+
+  - name: Japan
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+    use:
+      - JP
+
+  - name: Tai Wan
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
+    use:
+      - TW
+
+  - name: America
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+    use:
+      - US
+
+rule-providers:
+
+  Global Direct:
+    type: http
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Direct/Direct.yaml?raw=true"
+    path: ./ruleset/global-direct.yaml
+    interval: 86400
+
+  AD Block:
+    type: http
+    behavior: domain-text
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/AdvertisingLite/AdvertisingLite_Domain.txt?raw=true"
+    path: ./ruleset/ad-block.yaml
+    interval: 86400
+
+  Telegram:
+    type: http
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Telegram/Telegram.yaml?raw=true"
+    path: ./ruleset/telegram.yaml
+    interval: 86400
+
+  Twitter:
+    type: http
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Twitter/Twitter.yaml?raw=true"
+    path: ./ruleset/twitter.yaml
+    interval: 86400
+
+  Apple:
+    type: http
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Apple/Apple.yaml?raw=true"
+    path: ./ruleset/apple.yaml
+    interval: 86400
+
+  Microsoft:
+    type: http
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Microsoft/Microsoft.yaml?raw=true"
+    path: ./ruleset/microsoft.yaml
+    interval: 86400
+
+  Game:
+    type: http
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Game/Game.yaml?raw=true"
+    path: ./ruleset/game.yaml
+    interval: 86400
+
+  China:
+    type: http
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/China/China.yaml?raw=true"
+    path: ./ruleset/china.yaml
+    interval: 86400
+
+  Global Proxy:
+    type: http
+    behavior: domain-text
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Proxy/Proxy_Domain.txt?raw=true"
+    path: ./ruleset/global-proxy.yaml
+    interval: 86400
+
+  Lan:
+    type: http
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Lan/Lan.yaml?raw=true"
+    path: ./ruleset/lan.yaml
+    interval: 86400
+
+rules:
+  - RULE-SET,Global Direct,Global Direct
+  - RULE-SET,AD Block,AD Block
+  - RULE-SET,Telegram,Telegram
+  - RULE-SET,Twitter,Twitter
+  - RULE-SET,Apple,Apple
+  - RULE-SET,Microsoft,Microsoft
+  - RULE-SET,Game,Game
+  - RULE-SET,Global Proxy,Global Proxy
+  - RULE-SET,China,Global Direct
+  - RULE-SET,Lan,DIRECT
+  - GEOIP,CN,Global Direct
+  - MATCH,Final
