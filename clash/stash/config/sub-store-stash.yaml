@@ -73,7 +73,7 @@ remote-resources-default-config: &rrdc
 proxy-providers:
   # 全部节点
   All: &All # 建立锚点
-    *rrdc
+    <<: *rrdc
     # 此处默认使用 sub-store 订阅链接，如果需要使用其他订阅链接，可以替换下面的 url 即可
     url: "https://sub.store/download/collection/subs"
     # 可以使用任意类型的链接仅替换上面文字，多个链接使用英文符号的竖杠|隔开一起写上即可；
@@ -244,74 +244,74 @@ proxy-groups:
 rule-providers:
 
   Global Direct:
-    *rrdc
+    <<: *rrdc
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Direct/Direct.yaml?raw=true"
     path: ./ruleset/global-direct.yaml
 
 
   AD Block:
-    *rrdc
+    <<: *rrdc
     behavior: domain-text
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/AdvertisingLite/AdvertisingLite_Domain.txt?raw=true"
     path: ./ruleset/ad-block.yaml
 
 
   Telegram:
-    *rrdc
+    <<: *rrdc
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Telegram/Telegram.yaml?raw=true"
     path: ./ruleset/telegram.yaml
 
 
   Twitter:
-    *rrdc
+    <<: *rrdc
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Twitter/Twitter.yaml?raw=true"
     path: ./ruleset/twitter.yaml
 
 
   Apple:
-    *rrdc
+    <<: *rrdc
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Apple/Apple.yaml?raw=true"
     path: ./ruleset/apple.yaml
 
 
   Microsoft:
-    *rrdc
+    <<: *rrdc
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Microsoft/Microsoft.yaml?raw=true"
     path: ./ruleset/microsoft.yaml
 
   Game:
-    *rrdc
+    <<: *rrdc
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Game/Game.yaml?raw=true"
     path: ./ruleset/game.yaml
 
 
   China:
-    *rrdc
+    <<: *rrdc
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/China/China.yaml?raw=true"
     path: ./ruleset/china.yaml
 
 
   China IPs:
-    *rrdc
+    <<: *rrdc
     behavior: ipcidr-text
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/ChinaMax/ChinaMax_IP_No_IPv6.txt?raw=true"
     path: ./ruleset/china-ips.yaml
 
   Global Proxy:
-    *rrdc
+    <<: *rrdc
     behavior: domain-text
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Proxy/Proxy_Domain.txt?raw=true"
     path: ./ruleset/global-proxy.yaml
 
   Lan:
-    *rrdc
+    <<: *rrdc
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Lan/Lan.yaml?raw=true"
     path: ./ruleset/lan.yaml
