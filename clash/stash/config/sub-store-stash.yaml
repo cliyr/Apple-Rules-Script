@@ -293,6 +293,12 @@ rule-providers:
     path: ./ruleset/china.yaml
     interval: 86400
 
+  China IPs:
+    behavior: ipcidr-text
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/ChinaMax/ChinaMax_IP_No_IPv6.txt?raw=true"
+    path: ./ruleset/china-ips.yaml
+    interval: 86400
+
   Global Proxy:
     type: http
     behavior: domain-text
@@ -317,6 +323,7 @@ rules:
   - RULE-SET,Game,Game
   - RULE-SET,Global Proxy,Global Proxy
   - RULE-SET,China,Global Direct
+  - RULE-SET,China IPs,Global Direct
   - RULE-SET,Lan,DIRECT
   - GEOIP,CN,Global Direct
   - MATCH,Final
