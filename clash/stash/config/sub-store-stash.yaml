@@ -66,14 +66,14 @@ subscribe-url: https://sub.store/download/collection/subs
 # 替换上面文字用于Stash获取机场流量信息并在主页显示(Stash1.6.1 build287+支持)
 
 # 远程资源默认配置
-remote-resources-default-config: &rrdc
+remote-resources-default-config: &remote-resources-default-config
   type: http
   interval: 86400
 
 proxy-providers:
   # 全部节点
-  All: &All # 建立锚点
-    <<: *rrdc
+  all-sub: &all-sub # 建立锚点
+    <<: *remote-resources-default-config
     # 此处默认使用 sub-store 订阅链接，如果需要使用其他订阅链接，可以替换下面的 url 即可
     url: "https://sub.store/download/collection/subs"
     # 可以使用任意类型的链接仅替换上面文字，多个链接使用英文符号的竖杠|隔开一起写上即可；
@@ -85,23 +85,23 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
 
   # 美国节点
-  US:
-    <<: *All # 引用锚点内容
+  america:
+    <<: *all-sub # 引用锚点内容
     filter: 美|🇺🇲|US|(?i)States|American
 
   # 香港节点
-  HK:
-    <<: *All
+  hong-kong:
+    <<: *all-sub
     filter: 港|🇭🇰|HK|(?i)Hong
 
   # 日本节点
-  JP:
-    <<: *All
+  japan:
+    <<: *all-sub
     filter: 日|🇯🇵|东京|JP|(?i)Japan
 
   # 台湾节点
-  TW:
-    <<: *All
+  tai-wan:
+    <<: *all-sub
     filter: 台|🇨🇳|🇹🇼|湾|TW|(?i)Taiwan
 
 
@@ -136,12 +136,12 @@ proxy-groups:
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
     use:
-      - All
+      - all-sub
 
   - name: Global Proxy
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png
-    proxies: &GP
+    proxies: &global-proxy
       - SSID Auto Mode
       - DIRECT
       - Hong Kong
@@ -152,7 +152,7 @@ proxy-groups:
   - name: Global Direct
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China_Map.png
-    proxies: &GD
+    proxies: &global-direct
       - DIRECT
       - SSID Auto Mode
 
@@ -167,31 +167,31 @@ proxy-groups:
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png
     proxies:
-      *GP
+      *global-proxy
 
   - name: Twitter
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png
     proxies:
-      *GP
+      *global-proxy
 
   - name: Apple
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png
     proxies:
-      *GD
+      *global-direct
 
   - name: Microsoft
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png
     proxies:
-      *GD
+      *global-direct
 
   - name: Game
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png
     proxies:
-      *GP
+      *global-proxy
 
   - name: AD Block
     type: select
@@ -205,7 +205,7 @@ proxy-groups:
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     use:
-      - All
+      - all-sub
 
   - name: Fallback
     type: fallback
@@ -213,121 +213,121 @@ proxy-groups:
     url: 'http://www.gstatic.com/generate_204'
     interval: 300
     use:
-      - All
+      - all-sub
 
   - name: Hong Kong
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
     use:
-      - HK
+      - hong-kong
 
   - name: Japan
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
     use:
-      - JP
+      - japan
 
   - name: Tai Wan
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
     use:
-      - TW
+      - tai-wan
 
   - name: America
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
     use:
-      - US
+      - america
 
 
 
 rule-providers:
 
-  Global Direct:
-    <<: *rrdc
+  global-direct:
+    <<: *remote-resources-default-config
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Direct/Direct.yaml?raw=true"
     path: ./ruleset/global-direct.yaml
 
 
-  AD Block:
-    <<: *rrdc
+  ad-block:
+    <<: *remote-resources-default-config
     behavior: domain-text
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/AdvertisingLite/AdvertisingLite_Domain.txt?raw=true"
     path: ./ruleset/ad-block.yaml
 
 
-  Telegram:
-    <<: *rrdc
+  telegram:
+    <<: *remote-resources-default-config
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Telegram/Telegram.yaml?raw=true"
     path: ./ruleset/telegram.yaml
 
 
-  Twitter:
-    <<: *rrdc
+  twitter:
+    <<: *remote-resources-default-config
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Twitter/Twitter.yaml?raw=true"
     path: ./ruleset/twitter.yaml
 
 
-  Apple:
-    <<: *rrdc
+  apple:
+    <<: *remote-resources-default-config
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Apple/Apple.yaml?raw=true"
     path: ./ruleset/apple.yaml
 
 
-  Microsoft:
-    <<: *rrdc
+  microsoft:
+    <<: *remote-resources-default-config
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Microsoft/Microsoft.yaml?raw=true"
     path: ./ruleset/microsoft.yaml
 
-  Game:
-    <<: *rrdc
+  game:
+    <<: *remote-resources-default-config
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Game/Game.yaml?raw=true"
     path: ./ruleset/game.yaml
 
 
-  China:
-    <<: *rrdc
+  china:
+    <<: *remote-resources-default-config
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/China/China.yaml?raw=true"
     path: ./ruleset/china.yaml
 
 
-  China IPs:
-    <<: *rrdc
+  china-ips:
+    <<: *remote-resources-default-config
     behavior: ipcidr-text
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/ChinaMax/ChinaMax_IP_No_IPv6.txt?raw=true"
     path: ./ruleset/china-ips.yaml
 
-  Global Proxy:
-    <<: *rrdc
+  global-proxy:
+    <<: *remote-resources-default-config
     behavior: domain-text
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Proxy/Proxy_Domain.txt?raw=true"
     path: ./ruleset/global-proxy.yaml
 
-  Lan:
-    <<: *rrdc
+  lan:
+    <<: *remote-resources-default-config
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Lan/Lan.yaml?raw=true"
     path: ./ruleset/lan.yaml
 
 
 rules:
-  - RULE-SET,Global Direct,Global Direct
-  - RULE-SET,AD Block,AD Block
-  - RULE-SET,Telegram,Telegram
-  - RULE-SET,Twitter,Twitter
-  - RULE-SET,Apple,Apple
-  - RULE-SET,Microsoft,Microsoft
-  - RULE-SET,Game,Game
-  - RULE-SET,Global Proxy,Global Proxy
-  - RULE-SET,China,Global Direct
-  - RULE-SET,China IPs,Global Direct
-  - RULE-SET,Lan,DIRECT
+  - RULE-SET,global-direct,Global Direct
+  - RULE-SET,ad-block,AD Block
+  - RULE-SET,telegram,Telegram
+  - RULE-SET,twitter,Twitter
+  - RULE-SET,apple,Apple
+  - RULE-SET,microsoft,Microsoft
+  - RULE-SET,game,Game
+  - RULE-SET,global-proxy,Global Proxy
+  - RULE-SET,china,Global Direct
+  - RULE-SET,china-ips,Global Direct
+  - RULE-SET,lan,DIRECT
   - GEOIP,CN,Global Direct
   - MATCH,Final
