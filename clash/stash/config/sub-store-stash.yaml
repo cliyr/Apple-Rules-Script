@@ -46,20 +46,9 @@ http:
     - g.cn
     - "*.google.cn"
     - "www.firefox.com.cn"
-    - sub.store
-  script:
-    - match: ^https?:\/\/sub\.store
-      name: sub-store
-      type: request
-      require-body: true
-      timeout: 120
   rewrite:
     - ^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 302
     - ^https?:\/\/(www.)?firefox\.com\.cn\/(download\/)?$ https://www.mozilla.org/zh-CN/firefox/new/ 302
-script-providers:
-  sub-store:
-    url: https://raw.githubusercontent.com/Peng-YM/Sub-Store/master/backend/sub-store.min.js
-    interval: 86400
 
 # 假如用组合订阅多个机场，就没必要使用 subscribe-url 了
 subscribe-url: https://sub.store/download/collection/subs
