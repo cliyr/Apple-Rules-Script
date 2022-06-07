@@ -4,3 +4,4 @@
 
 #  www.google.com 荷兰机房
 IP-CIDR, 5.28.195.0/20, no-resolve
+IP-CIDR, 172.217.0.0/16, no-resolve
