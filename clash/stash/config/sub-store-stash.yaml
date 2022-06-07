@@ -111,7 +111,7 @@ proxy-groups:
 
   - name: SSID Auto Mode
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/SSID.png
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/SSID.png?raw=true
     proxies:
     # 此处为配置文件中的已有策略组
       - Server Strategy
@@ -126,7 +126,7 @@ proxy-groups:
 
   - name: Server Strategy
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Proxy.png?raw=true
     proxies:
       - Auto Select
       - Manual Select
@@ -134,13 +134,13 @@ proxy-groups:
 
   - name: Manual Select
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Rocket.png?raw=true
     use:
       - all-sub
 
   - name: Global Proxy
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Global.png?raw=true
     proxies: &global-proxy
       - SSID Auto Mode
       - DIRECT
@@ -151,57 +151,57 @@ proxy-groups:
 
   - name: Global Direct
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China_Map.png
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/China_Map.png?raw=true
     proxies: &global-direct
       - DIRECT
       - SSID Auto Mode
 
   - name: Final
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Final.png?raw=true
     proxies:
       - SSID Auto Mode
       - DIRECT
 
   - name: Telegram
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Telegram.png?raw=true
     proxies:
       *global-proxy
 
   - name: Twitter
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Twitter.png?raw=true
     proxies:
       *global-proxy
 
   - name: Apple
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Apple.png?raw=true
     proxies:
       *global-direct
 
   - name: Microsoft
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Microsoft.png?raw=true
     proxies:
       *global-direct
 
   - name: Game
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Game.png?raw=true
     proxies:
       *global-proxy
 
   - name: AD Block
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Advertising.png?raw=true
     proxies:
       - REJECT
 
   - name: Auto Select
     type: url-test
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Auto.png?raw=true
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     use:
@@ -209,7 +209,7 @@ proxy-groups:
 
   - name: Fallback
     type: fallback
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Bypass.png?raw=true
     url: 'http://www.gstatic.com/generate_204'
     interval: 300
     use:
@@ -217,25 +217,25 @@ proxy-groups:
 
   - name: Hong Kong
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Hong_Kong.png?raw=true
     use:
       - hong-kong
 
   - name: Japan
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Japan.png?raw=true
     use:
       - japan
 
   - name: Tai Wan
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Taiwan.png?raw=true
     use:
       - tai-wan
 
   - name: America
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/United_States.png?raw=true
     use:
       - america
 
