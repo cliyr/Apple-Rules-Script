@@ -126,7 +126,7 @@ proxy-groups:
 
   - name: Server Strategy
     type: select
-    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Proxy.png?raw=true
+    icon: https://github.com/QuentinHsu/Apple-Rules-Script/blob/main/icon/strategies.png?raw=true
     proxies:
       - Auto Select
       - Manual Select
