@@ -63,7 +63,7 @@ script-providers:
 
 # 假如用组合订阅多个机场，就没必要使用 subscribe-url 了
 subscribe-url: https://sub.store/download/collection/subs
-# 替换上面文字用于Stash获取机场流量信息并在主页显示(Stash1.6.1 build287+支持)
+# 替换上面文字用于 Stash 获取机场流量信息并在主页显示(Stash1.6.1 build287+支持)
 
 # 远程资源默认配置
 remote-resources-default-config: &remote-resources-default-config
@@ -74,9 +74,9 @@ proxy-providers:
   # 全部节点
   all-sub: &all-sub # 建立锚点
     <<: *remote-resources-default-config
-    # 此处默认使用 sub-store 订阅链接，如果需要使用其他订阅链接，可以替换下面的 url 即可
+    # 此处默认使用 Sub-Store 订阅链接，如果需要使用其他订阅链接，可以替换下面的 url 即可
     url: "https://sub.store/download/collection/subs"
-    # 可以使用任意类型的链接仅替换上面文字，多个链接使用英文符号的竖杠|隔开一起写上即可；
+    # 可以使用任意类型的链接仅替换上面文字，多个链接使用英文符号的竖杠|隔开一起写上即可
     # Sub-Store 与 Clash 类型订阅链接替换掉整个引号""内的链接
     path: ./all.yaml
     health-check:
@@ -187,6 +187,12 @@ proxy-groups:
     proxies:
       *global-direct
 
+  - name: Speedtest
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Speedtest.png?raw=true
+    proxies:
+      *global-direct
+
   - name: Game
     type: select
     icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Game.png?raw=true
@@ -284,6 +290,12 @@ rule-providers:
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Microsoft/Microsoft.yaml?raw=true"
     path: ./ruleset/microsoft.yaml
 
+  speedtest:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Speedtest/Speedtest.yaml?raw=true"
+    path: ./ruleset/speedtest.yaml
+
   game:
     <<: *remote-resources-default-config
     behavior: classical
@@ -324,6 +336,7 @@ rules:
   - RULE-SET,twitter,Twitter
   - RULE-SET,apple,Apple
   - RULE-SET,microsoft,Microsoft
+  - RULE-SET,speedtest,Speedtest
   - RULE-SET,game,Game
   - RULE-SET,global-proxy,Global Proxy
   - RULE-SET,china,Global Direct
