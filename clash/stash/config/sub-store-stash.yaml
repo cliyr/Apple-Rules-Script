@@ -264,6 +264,12 @@ rule-providers:
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Instagram/Instagram.yaml?raw=true"
     path: ./ruleset/instagram.yaml
 
+  google:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Google/Google.yaml?raw=true"
+    path: ./ruleset/google.yaml
+
   github:
     <<: *remote-resources-default-config
     behavior: classical
@@ -323,7 +329,6 @@ rule-providers:
 
 
 rules:
-  - RULE-SET,global-direct,Global Direct
   - RULE-SET,spark,Spark
   - RULE-SET,telegram,Telegram
   - RULE-SET,twitter,Twitter
@@ -332,7 +337,9 @@ rules:
   - RULE-SET,speedtest,Speedtest
   - RULE-SET,game,Game
   - RULE-SET,instagram,Global Proxy
+  - RULE-SET,google,Global Proxy
   - RULE-SET,github,Global Proxy
+  - RULE-SET,global-direct,Global Direct
   - RULE-SET,china,Global Direct
   - RULE-SET,china-ips,Global Direct
   - RULE-SET,lan,DIRECT
