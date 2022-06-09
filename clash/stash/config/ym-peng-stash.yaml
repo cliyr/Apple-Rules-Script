@@ -148,47 +148,11 @@ proxy-groups:
       - SSID Auto Mode
       - DIRECT
 
-  - name: Spark
+  - name: AD Block
     type: select
-    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Spark.png?raw=true
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Advertising.png?raw=true
     proxies:
-      *global-proxy
-
-  - name: Telegram
-    type: select
-    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Telegram.png?raw=true
-    proxies:
-      *global-proxy
-
-  - name: Twitter
-    type: select
-    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Twitter.png?raw=true
-    proxies:
-      *global-proxy
-
-  - name: Apple
-    type: select
-    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Apple.png?raw=true
-    proxies:
-      *global-direct
-
-  - name: Microsoft
-    type: select
-    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Microsoft.png?raw=true
-    proxies:
-      *global-direct
-
-  - name: Speedtest
-    type: select
-    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Speedtest.png?raw=true
-    proxies:
-      *global-direct
-
-  - name: Game
-    type: select
-    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Game.png?raw=true
-    proxies:
-      *global-proxy
+      - REJECT
 
   - name: Auto Select
     type: url-test
@@ -234,104 +198,113 @@ proxy-groups:
 
 rule-providers:
 
-  global-proxy:
-    <<: *remote-resources-default-config
+  china_telecom:
+    type: http
     behavior: classical
-    url: "https://github.com/QuentinHsu/clash-rules/blob/release/acl4ssr-proxy.txt?raw=true"
-    path: ./ruleset/global-proxy.yaml
-
-  telegram:
-    <<: *remote-resources-default-config
-    behavior: classical
-    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Telegram/Telegram.yaml?raw=true"
-    path: ./ruleset/telegram.yaml
-
-  twitter:
-    <<: *remote-resources-default-config
-    behavior: classical
-    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Twitter/Twitter.yaml?raw=true"
-    path: ./ruleset/twitter.yaml
-
-  spark:
-    <<: *remote-resources-default-config
-    behavior: classical
-    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Spark/Spark.yaml?raw=true"
-    path: ./ruleset/spark.yaml
-
-  instagram:
-    <<: *remote-resources-default-config
-    behavior: classical
-    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Instagram/Instagram.yaml?raw=true"
-    path: ./ruleset/instagram.yaml
-
-  google:
-    <<: *remote-resources-default-config
-    behavior: classical
-    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Google/Google.yaml?raw=true"
-    path: ./ruleset/google.yaml
-
-  github:
-    <<: *remote-resources-default-config
-    behavior: classical
-    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/GitHub/GitHub.yaml?raw=true"
-    path: ./ruleset/github.yaml
-
-  apple:
-    <<: *remote-resources-default-config
-    behavior: classical
-    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Apple/Apple.yaml?raw=true"
-    path: ./ruleset/apple.yaml
-
-  microsoft:
-    <<: *remote-resources-default-config
-    behavior: classical
-    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Microsoft/Microsoft.yaml?raw=true"
-    path: ./ruleset/microsoft.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaTelecom/ChinaTelecom.yaml
+    path: ./rules/ChinaTelecom.yaml
+    interval: 86400
 
   speedtest:
-    <<: *remote-resources-default-config
+    type: http
     behavior: classical
-    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Speedtest/Speedtest.yaml?raw=true"
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Speedtest/Speedtest.yaml
     path: ./ruleset/speedtest.yaml
 
-  game:
-    <<: *remote-resources-default-config
+  telegram:
+    type: http
     behavior: classical
-    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Game/Game.yaml?raw=true"
-    path: ./ruleset/game.yaml
+    interval: 86400
+    url: https://cdn.jsdelivr.net/gh/fantasticmao/clash-rules@main/telegramcidr.yaml
+    path: ./ruleset/telegram.yaml
 
-  china:
-    <<: *remote-resources-default-config
-    behavior: classical
-    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/China/China.yaml?raw=true"
-    path: ./ruleset/china.yaml
+  cncidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    path: ./ruleset/cncidr.yaml
+    interval: 86400
 
-  global-direct:
-    <<: *remote-resources-default-config
-    behavior: classical
-    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Direct/Direct.yaml?raw=true"
-    path: ./ruleset/global-direct.yaml
+  lancidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    path: ./ruleset/lancidr.yaml
+    interval: 86400
 
-  lan:
-    <<: *remote-resources-default-config
+  google:
+    type: http
     behavior: classical
-    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Lan/Lan.yaml?raw=true"
-    path: ./ruleset/lan.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Google/Google.yaml"
+    path: ./ruleset/google.yaml
+    interval: 86400
+
+  apple:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Apple/Apple.yaml"
+    path: ./ruleset/apple.yaml
+    interval: 86400
+
+  global_media:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GlobalMedia/GlobalMedia.yaml"
+    path: ./ruleset/global_media.yaml
+    interval: 86400
+
+  advertising_domain:
+    behavior: domain
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite_Domain.yaml
+
+  advertising:
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/Advertising.yaml
+
+  github:
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/GitHub/GitHub.yaml
+
+  global:
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Global/Global_Classical.yaml
+
+  tencent:
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Tencent/Tencent.yaml
+
+  asian_media:
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AsianMedia/AsianMedia.yaml
+
+  netease_music:
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/NetEaseMusic/NetEaseMusic.yaml
+
 
 
 rules:
-  - RULE-SET,spark,Spark
-  - RULE-SET,telegram,Telegram
-  - RULE-SET,twitter,Twitter
-  - RULE-SET,apple,Apple
-  - RULE-SET,microsoft,Microsoft
-  - RULE-SET,speedtest,Speedtest
-  - RULE-SET,game,Game
-  - RULE-SET,instagram,Global Proxy
+  - RULE-SET,china_telecom,Global Direct
+  - RULE-SET,speedtest,Global Proxy
+  - RULE-SET,telegram,Global Proxy
+  - RULE-SET,cncidr,Global Direct
+  - RULE-SET,lancidr,Global Direct
   - RULE-SET,google,Global Proxy
+  - RULE-SET,apple,Global Direct
+  - RULE-SET,global_media,Global Proxy
+  - RULE-SET,advertising_domain,AD Block
+  - RULE-SET,advertising,AD Block
   - RULE-SET,github,Global Proxy
-  - RULE-SET,global-direct,Global Direct
-  - RULE-SET,china,Global Direct
-  - RULE-SET,lan,DIRECT
+  - RULE-SET,global,Global Proxy
+  - RULE-SET,tencent,Global Direct
+  - RULE-SET,asian_media,Global Direct
+  - RULE-SET,netease_music,Global Direct
   - GEOIP,CN,Global Direct
   - MATCH,Final
