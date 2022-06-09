@@ -244,14 +244,15 @@ rule-providers:
     interval: 86400
 
   advertising_domain:
+    <<: *remote-resources-default-config
     behavior: domain
-    interval: 86400
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite_Domain.yaml
+    url: https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/AdvertisingLite/AdvertisingLite_Domain.yaml?raw=true
 
   advertising:
+    <<: *remote-resources-default-config
     behavior: classical
-    interval: 86400
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/Advertising.yaml
+    url: https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/AdvertisingLite/AdvertisingLite.yaml?raw=true
+    path: ./ruleset/advertising.yaml
 
   github:
     behavior: classical
