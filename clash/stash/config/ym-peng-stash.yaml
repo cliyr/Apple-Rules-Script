@@ -1,0 +1,337 @@
+################################################################################
+# 配置参考
+# - https://github.com/Infatuation-Fei/rule/blob/main/Stash/配置模板/Config-Stash.yaml
+# 规则参考
+# - https://github.com/DivineEngine/Profiles/tree/master/Clash/RuleSet
+################################################################################
+# autocorrect-disable
+
+mixed-port: 7890
+allow-lan: true
+bind-address: '*'
+mode: rule
+log-level: info
+ipv6: true
+external-controller: 127.0.0.1:9090
+
+dns:
+  enable: true
+  ipv6: true
+  listen: 0.0.0.0:53
+  default-nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*.lan'
+    - localhost.ptlogin2.qq.com
+    - '+.srv.nintendo.net'
+    - '+.stun.playstation.net'
+    - '+.msftconnecttest.com'
+    - '+.msftncsi.com'
+    - '+.xboxlive.com'
+    - 'msftconnecttest.com'
+    - 'xbox.*.microsoft.com'
+    - '*.battlenet.com.cn'
+    - '*.battlenet.com'
+    - '*.blzstatic.cn'
+    - '*.battle.net'
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+
+http:
+  mitm:
+    - g.cn
+    - "*.google.cn"
+    - "www.firefox.com.cn"
+  rewrite:
+    - ^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 302
+    - ^https?:\/\/(www.)?firefox\.com\.cn\/(download\/)?$ https://www.mozilla.org/zh-CN/firefox/new/ 302
+
+# 假如用组合订阅多个机场，就没必要使用 subscribe-url 了
+subscribe-url: https://sub.store/download/collection/subs
+# 替换上面文字用于 Stash 获取机场流量信息并在主页显示(Stash1.6.1 build287+支持)
+
+# 远程资源默认配置
+remote-resources-default-config: &remote-resources-default-config
+  type: http
+  interval: 86400
+
+proxy-providers:
+  # 全部节点
+  all-sub: &all-sub # 建立锚点
+    <<: *remote-resources-default-config
+    # 此处默认使用 Sub-Store 订阅链接，如果需要使用其他订阅链接，可以替换下面的 url 即可
+    url: "https://sub.store/download/collection/subs"
+    # 可以使用任意类型的链接仅替换上面文字，多个链接使用英文符号的竖杠|隔开一起写上即可
+    # Sub-Store 与 Clash 类型订阅链接替换掉整个引号""内的链接
+    path: ./all.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+
+  # 美国节点
+  america:
+    <<: *all-sub # 引用锚点内容
+    filter: 美|🇺🇲|US|(?i)States|American
+
+  # 香港节点
+  hong-kong:
+    <<: *all-sub
+    filter: 港|🇭🇰|HK|(?i)Hong
+
+  # 日本节点
+  japan:
+    <<: *all-sub
+    filter: 日|🇯🇵|东京|JP|(?i)Japan
+
+  # 台湾节点
+  tai-wan:
+    <<: *all-sub
+    filter: 台|🇨🇳|🇹🇼|湾|TW|(?i)Taiwan
+
+
+proxies:
+
+proxy-groups:
+
+  - name: SSID Auto Mode
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/SSID.png?raw=true
+    proxies:
+    # 此处为配置文件中的已有策略组
+      - Server Strategy
+      - DIRECT  # 虽说 DIRECT 是保留字。但必须配置该策略选项，于此代理集的 proxies 下，不然该代理集就只有 1 个策略选项
+    ssid-policy:
+    # cellular: 保留字，指代蜂窝数据条件下
+    # default：保留字，指代其他 SSID 条件下，默认为 DIRECT 策略
+    # DIRECT：保留字，直连策略
+      HedyLamarr: DIRECT  # HedyLamarr，为 SSID 名称
+      cellular: Server Strategy
+      default: Server Strategy
+
+  - name: Server Strategy
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Server.png?raw=true
+    proxies:
+      - Auto Select
+      - Manual Select
+      - Fallback
+
+  - name: Manual Select
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Rocket.png?raw=true
+    use:
+      - all-sub
+
+  - name: Global Proxy
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Global.png?raw=true
+    proxies: &global-proxy
+      - SSID Auto Mode
+      - DIRECT
+
+  - name: Global Direct
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/China_Map.png?raw=true
+    proxies: &global-direct
+      - DIRECT
+      - SSID Auto Mode
+
+  - name: Final
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Final.png?raw=true
+    proxies:
+      - SSID Auto Mode
+      - DIRECT
+
+  - name: Spark
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Spark.png?raw=true
+    proxies:
+      *global-proxy
+
+  - name: Telegram
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Telegram.png?raw=true
+    proxies:
+      *global-proxy
+
+  - name: Twitter
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Twitter.png?raw=true
+    proxies:
+      *global-proxy
+
+  - name: Apple
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Apple.png?raw=true
+    proxies:
+      *global-direct
+
+  - name: Microsoft
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Microsoft.png?raw=true
+    proxies:
+      *global-direct
+
+  - name: Speedtest
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Speedtest.png?raw=true
+    proxies:
+      *global-direct
+
+  - name: Game
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Game.png?raw=true
+    proxies:
+      *global-proxy
+
+  - name: Auto Select
+    type: url-test
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Auto.png?raw=true
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    use:
+      - all-sub
+
+  - name: Fallback
+    type: fallback
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Bypass.png?raw=true
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+    use:
+      - all-sub
+
+  - name: Hong Kong
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Hong_Kong.png?raw=true
+    use:
+      - hong-kong
+
+  - name: Japan
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Japan.png?raw=true
+    use:
+      - japan
+
+  - name: Tai Wan
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Taiwan.png?raw=true
+    use:
+      - tai-wan
+
+  - name: America
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/United_States.png?raw=true
+    use:
+      - america
+
+
+
+rule-providers:
+
+  global-proxy:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/QuentinHsu/clash-rules/blob/release/acl4ssr-proxy.txt?raw=true"
+    path: ./ruleset/global-proxy.yaml
+
+  telegram:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Telegram/Telegram.yaml?raw=true"
+    path: ./ruleset/telegram.yaml
+
+  twitter:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Twitter/Twitter.yaml?raw=true"
+    path: ./ruleset/twitter.yaml
+
+  spark:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Spark/Spark.yaml?raw=true"
+    path: ./ruleset/spark.yaml
+
+  instagram:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Instagram/Instagram.yaml?raw=true"
+    path: ./ruleset/instagram.yaml
+
+  google:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Google/Google.yaml?raw=true"
+    path: ./ruleset/google.yaml
+
+  github:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/GitHub/GitHub.yaml?raw=true"
+    path: ./ruleset/github.yaml
+
+  apple:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Apple/Apple.yaml?raw=true"
+    path: ./ruleset/apple.yaml
+
+  microsoft:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Microsoft/Microsoft.yaml?raw=true"
+    path: ./ruleset/microsoft.yaml
+
+  speedtest:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Speedtest/Speedtest.yaml?raw=true"
+    path: ./ruleset/speedtest.yaml
+
+  game:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Game/Game.yaml?raw=true"
+    path: ./ruleset/game.yaml
+
+  china:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/China/China.yaml?raw=true"
+    path: ./ruleset/china.yaml
+
+  global-direct:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Direct/Direct.yaml?raw=true"
+    path: ./ruleset/global-direct.yaml
+
+  lan:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Lan/Lan.yaml?raw=true"
+    path: ./ruleset/lan.yaml
+
+
+rules:
+  - RULE-SET,spark,Spark
+  - RULE-SET,telegram,Telegram
+  - RULE-SET,twitter,Twitter
+  - RULE-SET,apple,Apple
+  - RULE-SET,microsoft,Microsoft
+  - RULE-SET,speedtest,Speedtest
+  - RULE-SET,game,Game
+  - RULE-SET,instagram,Global Proxy
+  - RULE-SET,google,Global Proxy
+  - RULE-SET,github,Global Proxy
+  - RULE-SET,global-direct,Global Direct
+  - RULE-SET,china,Global Direct
+  - RULE-SET,lan,DIRECT
+  - GEOIP,CN,Global Direct
+  - MATCH,Final
