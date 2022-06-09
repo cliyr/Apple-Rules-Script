@@ -234,11 +234,11 @@ proxy-groups:
 
 rule-providers:
 
-  global-direct:
+  global-proxy:
     <<: *remote-resources-default-config
     behavior: classical
-    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Direct/Direct.yaml?raw=true"
-    path: ./ruleset/global-direct.yaml
+    url: "https://github.com/QuentinHsu/clash-rules/blob/release/acl4ssr-proxy.txt?raw=true"
+    path: ./ruleset/global-proxy.yaml
 
   telegram:
     <<: *remote-resources-default-config
@@ -282,7 +282,6 @@ rule-providers:
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Apple/Apple.yaml?raw=true"
     path: ./ruleset/apple.yaml
 
-
   microsoft:
     <<: *remote-resources-default-config
     behavior: classical
@@ -307,11 +306,11 @@ rule-providers:
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/China/China.yaml?raw=true"
     path: ./ruleset/china.yaml
 
-  # global-proxy:
-  #   <<: *remote-resources-default-config
-  #   behavior: domain-text
-  #   url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Google/Google.yaml?raw=true"
-  #   path: ./ruleset/global-proxy.yaml
+  global-direct:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Direct/Direct.yaml?raw=true"
+    path: ./ruleset/global-direct.yaml
 
   lan:
     <<: *remote-resources-default-config
