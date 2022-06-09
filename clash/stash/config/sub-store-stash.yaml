@@ -144,10 +144,6 @@ proxy-groups:
     proxies: &global-proxy
       - SSID Auto Mode
       - DIRECT
-      - Hong Kong
-      - Japan
-      - America
-      - Tai Wan
 
   - name: Global Direct
     type: select
@@ -162,6 +158,12 @@ proxy-groups:
     proxies:
       - SSID Auto Mode
       - DIRECT
+
+  - name: Spark
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Spark.png?raw=true
+    proxies:
+      *global-proxy
 
   - name: Telegram
     type: select
@@ -198,12 +200,6 @@ proxy-groups:
     icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Game.png?raw=true
     proxies:
       *global-proxy
-
-  - name: AD Block
-    type: select
-    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Advertising.png?raw=true
-    proxies:
-      - REJECT
 
   - name: Auto Select
     type: url-test
@@ -255,20 +251,11 @@ rule-providers:
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Direct/Direct.yaml?raw=true"
     path: ./ruleset/global-direct.yaml
 
-
-  ad-block:
-    <<: *remote-resources-default-config
-    behavior: domain-text
-    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/AdvertisingLite/AdvertisingLite_Domain.txt?raw=true"
-    path: ./ruleset/ad-block.yaml
-
-
   telegram:
     <<: *remote-resources-default-config
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Telegram/Telegram.yaml?raw=true"
     path: ./ruleset/telegram.yaml
-
 
   twitter:
     <<: *remote-resources-default-config
@@ -276,6 +263,23 @@ rule-providers:
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Twitter/Twitter.yaml?raw=true"
     path: ./ruleset/twitter.yaml
 
+  spark:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Spark/Spark.yaml?raw=true"
+    path: ./ruleset/spark.yaml
+
+  instagram:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Instagram/Instagram.yaml?raw=true"
+    path: ./ruleset/instagram.yaml
+
+  github:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/GitHub/GitHub.yaml?raw=true"
+    path: ./ruleset/github.yaml
 
   apple:
     <<: *remote-resources-default-config
@@ -316,11 +320,11 @@ rule-providers:
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/ChinaMax/ChinaMax_IP_No_IPv6.txt?raw=true"
     path: ./ruleset/china-ips.yaml
 
-  global-proxy:
-    <<: *remote-resources-default-config
-    behavior: domain-text
-    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Proxy/Proxy_Domain.txt?raw=true"
-    path: ./ruleset/global-proxy.yaml
+  # global-proxy:
+  #   <<: *remote-resources-default-config
+  #   behavior: domain-text
+  #   url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Google/Google.yaml?raw=true"
+  #   path: ./ruleset/global-proxy.yaml
 
   lan:
     <<: *remote-resources-default-config
@@ -331,14 +335,15 @@ rule-providers:
 
 rules:
   - RULE-SET,global-direct,Global Direct
-  - RULE-SET,ad-block,AD Block
+  - RULE-SET,spark,Spark
   - RULE-SET,telegram,Telegram
   - RULE-SET,twitter,Twitter
   - RULE-SET,apple,Apple
   - RULE-SET,microsoft,Microsoft
   - RULE-SET,speedtest,Speedtest
   - RULE-SET,game,Game
-  - RULE-SET,global-proxy,Global Proxy
+  - RULE-SET,instagram,Global Proxy
+  - RULE-SET,github,Global Proxy
   - RULE-SET,china,Global Direct
   - RULE-SET,china-ips,Global Direct
   - RULE-SET,lan,DIRECT
