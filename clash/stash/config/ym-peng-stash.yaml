@@ -148,6 +148,24 @@ proxy-groups:
       - SSID Auto Mode
       - DIRECT
 
+  - name: Telegram
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Telegram.png?raw=true
+    proxies:
+      *global-proxy
+
+  - name: Apple
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Apple.png?raw=true
+    proxies:
+      *global-direct
+
+  - name: Speedtest
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Speedtest.png?raw=true
+    proxies:
+      *global-direct
+
   - name: AD Block
     type: select
     icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Advertising.png?raw=true
@@ -208,42 +226,35 @@ rule-providers:
     type: http
     behavior: classical
     interval: 86400
-    url: https://cdn.jsdelivr.net/gh/fantasticmao/clash-rules@main/telegramcidr.yaml
+    url: https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Telegram/Telegram.yaml?raw=true
     path: ./ruleset/telegram.yaml
 
   cncidr:
     type: http
     behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    url: https://github.com/Loyalsoldier/clash-rules/blob/release/cncidr.txt?raw=true
     path: ./ruleset/cncidr.yaml
     interval: 86400
 
   lancidr:
     type: http
     behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    url: https://github.com/Loyalsoldier/clash-rules/blob/release/lancidr.txt?raw=true
     path: ./ruleset/lancidr.yaml
     interval: 86400
 
   google:
     type: http
     behavior: classical
-    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Google/Google.yaml"
+    url: https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Google/Google.yaml?raw=true
     path: ./ruleset/google.yaml
     interval: 86400
 
   apple:
     type: http
     behavior: classical
-    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Apple/Apple.yaml"
+    url: https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Apple/Apple.yaml?raw=true
     path: ./ruleset/apple.yaml
-    interval: 86400
-
-  global_media:
-    type: http
-    behavior: classical
-    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GlobalMedia/GlobalMedia.yaml"
-    path: ./ruleset/global_media.yaml
     interval: 86400
 
   advertising_domain:
@@ -285,13 +296,12 @@ rule-providers:
     path: ./ruleset/lan.yaml
 
 rules:
-  - RULE-SET,speedtest,Global Proxy
-  - RULE-SET,telegram,Global Proxy
+  - RULE-SET,speedtest,Speedtest
+  - RULE-SET,telegram,Telegram
   - RULE-SET,cncidr,Global Direct
   - RULE-SET,lancidr,Global Direct
   - RULE-SET,google,Global Proxy
-  - RULE-SET,apple,Global Direct
-  - RULE-SET,global_media,Global Proxy
+  - RULE-SET,apple,Apple
   - RULE-SET,advertising_domain,AD Block
   - RULE-SET,advertising,AD Block
   - RULE-SET,github,Global Proxy
