@@ -266,7 +266,23 @@ rule-providers:
     interval: 86400
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Global/Global_Classical.yaml
 
+  china:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/China/China.yaml?raw=true"
+    path: ./ruleset/china.yaml
 
+  global-direct:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Direct/Direct.yaml?raw=true"
+    path: ./ruleset/global-direct.yaml
+
+  lan:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Lan/Lan.yaml?raw=true"
+    path: ./ruleset/lan.yaml
 
 rules:
   - RULE-SET,speedtest,Global Proxy
@@ -280,5 +296,8 @@ rules:
   - RULE-SET,advertising,AD Block
   - RULE-SET,github,Global Proxy
   - RULE-SET,global,Global Proxy
+  - RULE-SET,china,Global Direct
+  - RULE-SET,global-direct,Global Direct
+  - RULE-SET,lan,Global Direct
   - GEOIP,CN,Global Direct
   - MATCH,Final
