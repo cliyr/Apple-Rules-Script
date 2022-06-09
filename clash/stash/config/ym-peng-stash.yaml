@@ -198,13 +198,6 @@ proxy-groups:
 
 rule-providers:
 
-  china_telecom:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaTelecom/ChinaTelecom.yaml
-    path: ./rules/ChinaTelecom.yaml
-    interval: 86400
-
   speedtest:
     type: http
     behavior: classical
@@ -273,25 +266,9 @@ rule-providers:
     interval: 86400
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Global/Global_Classical.yaml
 
-  tencent:
-    behavior: classical
-    interval: 86400
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Tencent/Tencent.yaml
-
-  asian_media:
-    behavior: classical
-    interval: 86400
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AsianMedia/AsianMedia.yaml
-
-  netease_music:
-    behavior: classical
-    interval: 86400
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/NetEaseMusic/NetEaseMusic.yaml
-
 
 
 rules:
-  - RULE-SET,china_telecom,Global Direct
   - RULE-SET,speedtest,Global Proxy
   - RULE-SET,telegram,Global Proxy
   - RULE-SET,cncidr,Global Direct
@@ -303,8 +280,5 @@ rules:
   - RULE-SET,advertising,AD Block
   - RULE-SET,github,Global Proxy
   - RULE-SET,global,Global Proxy
-  - RULE-SET,tencent,Global Direct
-  - RULE-SET,asian_media,Global Direct
-  - RULE-SET,netease_music,Global Direct
   - GEOIP,CN,Global Direct
   - MATCH,Final
