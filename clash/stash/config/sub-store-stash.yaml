@@ -301,19 +301,11 @@ rule-providers:
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Game/Game.yaml?raw=true"
     path: ./ruleset/game.yaml
 
-
   china:
     <<: *remote-resources-default-config
     behavior: classical
     url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/China/China.yaml?raw=true"
     path: ./ruleset/china.yaml
-
-
-  china-ips:
-    <<: *remote-resources-default-config
-    behavior: ipcidr-text
-    url: "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/ChinaMax/ChinaMax_IP_No_IPv6.txt?raw=true"
-    path: ./ruleset/china-ips.yaml
 
   # global-proxy:
   #   <<: *remote-resources-default-config
@@ -341,7 +333,6 @@ rules:
   - RULE-SET,github,Global Proxy
   - RULE-SET,global-direct,Global Direct
   - RULE-SET,china,Global Direct
-  - RULE-SET,china-ips,Global Direct
   - RULE-SET,lan,DIRECT
   - GEOIP,CN,Global Direct
   - MATCH,Final
