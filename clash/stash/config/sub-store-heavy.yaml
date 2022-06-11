@@ -73,25 +73,25 @@ proxy-providers:
       interval: 600
       url: http://www.gstatic.com/generate_204
 
-  # 美国节点
-  america:
-    <<: *all-sub # 引用锚点内容
-    filter: 美|🇺🇲|US|(?i)States|American
+  # # 美国节点
+  # america:
+  #   <<: *all-sub # 引用锚点内容
+  #   filter: 美|🇺🇲|US|(?i)States|American
 
-  # 香港节点
-  hong-kong:
-    <<: *all-sub
-    filter: 港|🇭🇰|HK|(?i)Hong
+  # # 香港节点
+  # hong-kong:
+  #   <<: *all-sub
+  #   filter: 港|🇭🇰|HK|(?i)Hong
 
-  # 日本节点
-  japan:
-    <<: *all-sub
-    filter: 日|🇯🇵|东京|JP|(?i)Japan
+  # # 日本节点
+  # japan:
+  #   <<: *all-sub
+  #   filter: 日|🇯🇵|东京|JP|(?i)Japan
 
-  # 台湾节点
-  tai-wan:
-    <<: *all-sub
-    filter: 台|🇨🇳|🇹🇼|湾|TW|(?i)Taiwan
+  # # 台湾节点
+  # tai-wan:
+  #   <<: *all-sub
+  #   filter: 台|🇨🇳|🇹🇼|湾|TW|(?i)Taiwan
 
 
 proxies:
@@ -188,29 +188,29 @@ proxy-groups:
     use:
       - all-sub
 
-  - name: Hong Kong
-    type: select
-    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Hong_Kong.png?raw=true
-    use:
-      - hong-kong
+  # - name: Hong Kong
+  #   type: select
+  #   icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Hong_Kong.png?raw=true
+  #   use:
+  #     - hong-kong
 
-  - name: Japan
-    type: select
-    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Japan.png?raw=true
-    use:
-      - japan
+  # - name: Japan
+  #   type: select
+  #   icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Japan.png?raw=true
+  #   use:
+  #     - japan
 
-  - name: Tai Wan
-    type: select
-    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Taiwan.png?raw=true
-    use:
-      - tai-wan
+  # - name: Tai Wan
+  #   type: select
+  #   icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Taiwan.png?raw=true
+  #   use:
+  #     - tai-wan
 
-  - name: America
-    type: select
-    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/United_States.png?raw=true
-    use:
-      - america
+  # - name: America
+  #   type: select
+  #   icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/United_States.png?raw=true
+  #   use:
+  #     - america
 
 
 
