@@ -12,9 +12,11 @@
 # 京东开屏广告
 ^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=start url reject
 # hostname = api.m.jd.com
+# 京东金融开屏广告
+^https?:\/\/ms\.jr\.jd\.com\/gw\/generic\/aladdin\/(new)?na\/m\/getLoadingPicture url reject
 
 # 微博开屏广告
 ^https?://(sdk|wb)app\.uve\.weibo\.com(/interface/sdk/sdkad.php|/wbapplua/wbpullad.lua) url script-response-body https://raw.githubusercontent.com/zmqcherish/proxy-script/main/weibo_launch.js
 # hostname = *.uve.weibo.com
 
-hostname = ems.youku.com, optimus-ads.amap.com, *.bdstatic.com, *.uve.weibo.com
+hostname = ems.youku.com, optimus-ads.amap.com, *.bdstatic.com, ms.jr.jd.com, *.uve.weibo.com
