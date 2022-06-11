@@ -1,0 +1,20 @@
+###  去除开屏广告（splash screen ads） ###
+
+# 高德地图广告
+^http:\/\/ems\.youku\.com\/imp\? url reject
+^http:\/\/optimus-ads\.amap\.com\/uploadimg\/.+ url reject
+# hostname = ems.youku.com, optimus-ads.amap.com
+
+# 百度地图开屏广告
+^https:\/\/dss0\.bdstatic\.com\/.+/tam-ogel\/.+\.jpg url reject
+# hostname = *.bdstatic.com
+
+# 京东开屏广告
+^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=start url reject
+# hostname = api.m.jd.com
+
+# 微博开屏广告
+^https?://(sdk|wb)app\.uve\.weibo\.com(/interface/sdk/sdkad.php|/wbapplua/wbpullad.lua) url script-response-body https://raw.githubusercontent.com/zmqcherish/proxy-script/main/weibo_launch.js
+# hostname = *.uve.weibo.com
+
+hostname = ems.youku.com, optimus-ads.amap.com, *.bdstatic.com, *.uve.weibo.com
