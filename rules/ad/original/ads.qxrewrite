@@ -1,0 +1,23 @@
+### Original ADs ###
+# create： 2022/06/12
+# update： 2022/06/12
+
+# 成都天府通 App
+^https?:\/\/ams-cdn\.cdtft\.cn/prod url reject-dict
+^https:\/\/metroact.cdtft.cn\/apkpex\/app\/layout\/getAppLayoutConfig url reject-dict
+^https:\/\/metroact\.cdtft\.cn\/gateway\/tftapp\/tft-ams\/api\/appAd\/getOfficialAndBakAdvByPositionCode url reject-dict
+^https:\/\/metroact\.cdtft\.cn\/apkpex\/app\/function\/getHomeFunctionList url reject-dict
+^https:\/\/api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/sdk\/get_ads url reject-dict
+^http:\/\/api-fc\.dutils\.com\/privacy\/policy url reject-dict
+^https:\/\/sf3-fe-tos\.pglstatp-toutiao\.com\/obj\/ad-pattern url reject-dict
+# hostname = *.cdtft.cn, api-access.pangolin-sdk-toutiao.com, api-fc.dutils.com, *.pglstatp-toutiao.com
+
+# 米家 App
+## 我的 - Banner ADs
+^https:\/\/home\.mi\.com\/cgi-op\/api\/v1\/recommendation\/myTab url script-response-body https://raw.githubusercontent.com/QuentinHsu/Apple-Rules-Script/main/script/Mijia/my-tab-banner.js
+# hostname = home.mi.com
+
+
+hostname = *.cdtft.cn, api-access.pangolin-sdk-toutiao.com, api-fc.dutils.com, *.pglstatp-toutiao.com, home.mi.com
+
+
