@@ -13,7 +13,10 @@
 ^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=start url reject
 # hostname = api.m.jd.com
 # 京东金融开屏广告
-^https?:\/\/ms\.jr\.jd\.com\/gw\/generic\/aladdin\/(new)?na\/m\/getLoadingPicture url reject
+# ^https?:\/\/ms\.jr\.jd\.com\/gw\/generic\/aladdin\/(new)?na\/m\/getLoadingPicture url reject
+# 京东极速版开屏广告 （京东的开屏广告也能去除）
+https://api.m.jd.com/client.action\?functionId=lite_advertising url reject
+
 
 # 微博开屏广告
 ^https?://(sdk|wb)app\.uve\.weibo\.com(/interface/sdk/sdkad.php|/wbapplua/wbpullad.lua) url script-response-body https://raw.githubusercontent.com/zmqcherish/proxy-script/main/weibo_launch.js
