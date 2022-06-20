@@ -120,6 +120,12 @@ proxy-groups:
     proxies:
       *global-direct
 
+  - name: Microsoft
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Microsoft.png?raw=true
+    proxies:
+      *global-direct
+
   - name: Speedtest
     type: select
     icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Speedtest.png?raw=true
@@ -239,16 +245,16 @@ rule-providers:
 
 
 rules:
-  - RULE-SET,speedtest,Speedtest
   - RULE-SET,ad-block,AD Block
   - RULE-SET,privacy,Privacy
   - RULE-SET,apple,Apple
   - RULE-SET,microsoft,Microsoft
-  - RULE-SET,github,GitHub
-  - RULE-SET,telegram,Telegram
-  - RULE-SET,twitter,Twitter
-  - RULE-SET,youtube,YouTube
-  - RULE-SET,google,Google
+  - RULE-SET,speedtest,Speedtest
+  - RULE-SET,github,Global Proxy
+  - RULE-SET,telegram,Global Proxy
+  - RULE-SET,twitter,Global Proxy
+  - RULE-SET,youtube,Global Proxy
+  - RULE-SET,google,Global Proxy
   - RULE-SET,global-proxy,Global Proxy
   - RULE-SET,global-direct,Global Direct
   - GEOIP,CN,Global Direct
