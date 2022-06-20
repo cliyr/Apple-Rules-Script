@@ -1,0 +1,255 @@
+# autocorrect-disable
+mixed-port: 7890
+allow-lan: true
+bind-address: '*'
+mode: rule
+log-level: info
+ipv6: true
+external-controller: 127.0.0.1:9090
+
+dns:
+  enable: true
+  ipv6: true
+  listen: 0.0.0.0:53
+  default-nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*.lan'
+    - localhost.ptlogin2.qq.com
+    - '+.srv.nintendo.net'
+    - '+.stun.playstation.net'
+    - '+.msftconnecttest.com'
+    - '+.msftncsi.com'
+    - '+.xboxlive.com'
+    - 'msftconnecttest.com'
+    - 'xbox.*.microsoft.com'
+    - '*.battlenet.com.cn'
+    - '*.battlenet.com'
+    - '*.blzstatic.cn'
+    - '*.battle.net'
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+
+http:
+  mitm:
+    - g.cn
+    - "*.google.cn"
+    - "www.firefox.com.cn"
+  rewrite:
+    - ^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 302
+    - ^https?:\/\/(www.)?firefox\.com\.cn\/(download\/)?$ https://www.mozilla.org/zh-CN/firefox/new/ 302
+
+# 假如用组合订阅多个机场，就没必要使用 subscribe-url 了
+subscribe-url: https://sub.store/download/collection/subs
+# 替换上面文字用于 Stash 获取机场流量信息并在主页显示 (Stash1.6.1 build287+支持)
+
+# 远程资源默认配置
+remote-resources-default-config: &remote-resources-default-config
+  type: http
+  interval: 86400
+
+proxy-providers:
+  # 全部节点
+  all-sub: &all-sub # 建立锚点
+    <<: *remote-resources-default-config
+    # 此处默认使用 Sub-Store 订阅链接，如果需要使用其他订阅链接，可以替换下面的 url 即可
+    url: "https://sub.store/download/collection/subs"
+    # 可以使用任意类型的链接仅替换上面文字，多个链接使用英文符号的竖杠 | 隔开一起写上即可
+    # Sub-Store 与 Clash 类型订阅链接替换掉整个引号""内的链接
+    path: ./all.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+
+proxies:
+
+proxy-groups:
+
+  - name: SSID Auto Mode
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/SSID.png?raw=true
+    proxies:
+    # 此处为配置文件中的已有策略组
+      - Server Strategy
+      - DIRECT  # 虽说 DIRECT 是保留字。但必须配置该策略选项，于此代理集的 proxies 下，不然该代理集就只有 1 个策略选项
+    ssid-policy:
+    # cellular: 保留字，指代蜂窝数据条件下
+    # default：保留字，指代其他 SSID 条件下，默认为 DIRECT 策略
+    # DIRECT：保留字，直连策略
+      HedyLamarr: DIRECT  # HedyLamarr，为 SSID 名称
+      cellular: Server Strategy
+      default: Server Strategy
+
+  - name: Server Strategy
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Server.png?raw=true
+    proxies:
+      - Auto Select
+      - Manual Select
+      - Fallback
+
+  - name: Global Proxy
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Global.png?raw=true
+    proxies: &global-proxy
+      - SSID Auto Mode
+      - DIRECT
+
+  - name: Global Direct
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/China_Map.png?raw=true
+    proxies: &global-direct
+      - DIRECT
+      - SSID Auto Mode
+
+  - name: Final
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Final.png?raw=true
+    proxies:
+      - SSID Auto Mode
+      - DIRECT
+
+  - name: Apple
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Apple.png?raw=true
+    proxies:
+      *global-direct
+
+  - name: Speedtest
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Speedtest.png?raw=true
+    use:
+      - all-sub
+
+  - name: AD Block
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Advertising.png?raw=true
+    proxies:
+      - REJECT
+      - DIRECT
+
+  - name: Privacy
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Lock.png?raw=true
+    proxies:
+      - REJECT
+      - DIRECT
+
+  - name: Manual Select
+    type: select
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Rocket.png?raw=true
+    use:
+      - all-sub
+
+  - name: Auto Select
+    type: url-test
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Auto.png?raw=true
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    use:
+      - all-sub
+
+  - name: Fallback
+    type: fallback
+    icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Bypass.png?raw=true
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+    use:
+      - all-sub
+
+
+rule-providers:
+
+  privacy:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: https://github.com/QuentinHsu/network-rules/blob/release/Clash/DivineEngine-Privacy.yaml?raw=true
+    path: ./ruleset/privacy.yaml
+
+  ad-block:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: https://github.com/QuentinHsu/network-rules/blob/release/Clash/DivineEngine-AD.yaml?raw=true
+    path: ./ruleset/ad.yaml
+
+  youtube:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/YouTube/YouTube.yaml?raw=true
+    path: ./ruleset/youtube.yaml
+
+  google:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Google/Google.yaml?raw=true
+    path: ./ruleset/google.yaml
+
+  github:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/GitHub/GitHub.yaml?raw=true
+    path: ./ruleset/github.yaml
+
+  telegram:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Telegram/Telegram.yaml?raw=true
+    path: ./ruleset/telegram.yaml
+
+  twitter:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Twitter/Twitter.yaml?raw=true
+    path: ./ruleset/twitter.yaml
+
+  global-proxy:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: https://github.com/QuentinHsu/network-rules/blob/release/Clash/ACL4SSR-Proxy.yaml?raw=true
+
+
+
+  apple:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Apple/Apple.yaml?raw=true
+    path: ./ruleset/apple.yaml
+
+  microsoft:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Microsoft/Microsoft.yaml?raw=true
+    path: ./ruleset/microsoft.yaml
+
+  speedtest:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Speedtest/Speedtest.yaml?raw=true
+
+  global-direct:
+    <<: *remote-resources-default-config
+    behavior: classical
+    url: https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Direct/Direct.yaml?raw=true
+    path: ./ruleset/direct.yaml
+
+
+rules:
+  - RULE-SET,speedtest,Speedtest
+  - RULE-SET,ad-block,AD Block
+  - RULE-SET,privacy,Privacy
+  - RULE-SET,apple,Apple
+  - RULE-SET,microsoft,Microsoft
+  - RULE-SET,github,GitHub
+  - RULE-SET,telegram,Telegram
+  - RULE-SET,twitter,Twitter
+  - RULE-SET,youtube,YouTube
+  - RULE-SET,google,Google
+  - RULE-SET,global-proxy,Global Proxy
+  - RULE-SET,global-direct,Global Direct
+  - GEOIP,CN,Global Direct
+  - MATCH,Final
