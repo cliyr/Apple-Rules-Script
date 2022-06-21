@@ -12,5 +12,5 @@ http:
       timeout: 120
 script-providers:
   sub-store:
-    url: https://github.com/QuentinHsu/Sub-Store/blob/master/backend/sub-store.min.js?raw=true
+    url: https://github.com/Peng-YM/Sub-Store/blob/master/backend/sub-store.min.js?raw=true
     interval: 86400
