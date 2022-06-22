@@ -130,8 +130,8 @@ proxy-groups:
   - name: Speedtest
     type: select
     icon: https://github.com/Koolson/Qure/blob/master/IconSet/Color/Speedtest.png?raw=true
-    use:
-      - all-sub
+    proxies:
+      *global-direct
 
   - name: AD Block
     type: select
