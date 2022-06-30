@@ -50,7 +50,7 @@ async function getInfo() {
     })
     .catch((err) => {
       console.log("🎉国外 err: " + err);
-      reject(err);
+      // reject(err);
     })
     .finally(() => {
       console.log("当前国外 IP 及所属地区 --- 查询结束");
