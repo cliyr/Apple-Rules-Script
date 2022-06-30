@@ -1,6 +1,6 @@
-console.log('代理 IP 查询 ---- 开始')
+console.log('代理 IP 查询 ---- 开始');
 $httpClient.get("http://ip-api.com/json/?lang=zh-CN", function (error, response, data) {
-  console.log("[🎉 dataObject ]" + dataObject)
+  console.log("[🎉 dataObject ]" + dataObject);
   const dataObject = JSON.parse(data);
   let { country, countryCode, regionName, city, query } = dataObject;
   // console.log("[ country - old ]-5" + country)
