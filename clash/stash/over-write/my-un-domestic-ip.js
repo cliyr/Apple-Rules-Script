@@ -30,3 +30,5 @@ function getInfo() {
     $done(tileTemplate);
   })
 }
+
+getInfo();
