@@ -17,8 +17,8 @@
       console.log("[ resolve unDomesticInfo ]-18" + unDomesticInfo)
       resolve(unDomesticInfo);
     }).catch(err => {
-      reject(err);
       console.log('🎉国外 err: ' + err);
+      reject(err);
     })
   })
 }
