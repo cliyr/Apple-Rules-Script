@@ -20,7 +20,7 @@
  */
 function getInfo() {
   const tileTemplate = {
-    title: "当前 IP 及所属地区",
+    title: "当前国内 IP 及所属地区",
     content: '',
     backgroundColor: "#663399",
     icon: "network",
