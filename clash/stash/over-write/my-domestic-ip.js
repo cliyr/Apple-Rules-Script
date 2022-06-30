@@ -11,6 +11,7 @@
       const domesticIp = `IP：${ip}`;
       const infoFlag = `${line}国内${line}`;
       const domesticInfo = `${infoFlag}\n${domesticIp}\n${domesticRegion}`;
+      console.log("[ resolve domesticInfo ]-15" + domesticInfo)
       resolve(domesticInfo);
     });
   })
@@ -26,6 +27,7 @@ function getInfo() {
     icon: "network",
   };
   getDomesticInfo().then(domesticInfo => {
+    console.log("[ domesticInfo ]-29" + domesticInfo)
     tileTemplate.content = domesticInfo;
     $done(tileTemplate);
   })

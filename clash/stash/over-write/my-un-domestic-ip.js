@@ -14,6 +14,7 @@
       // 国外 IP 信息
       const infoFlag = `${line}国外${line}`;
       const unDomesticInfo = `${infoFlag}\n${ip}\n${region}`;
+      console.log("[ resolve unDomesticInfo ]-18" + unDomesticInfo)
       resolve(unDomesticInfo);
     }).catch(err => {
       reject(err);
@@ -31,8 +32,9 @@ function getInfo() {
     backgroundColor: "#663399",
     icon: "network",
   };
-  getDomesticInfo().then(domesticInfo => {
-    tileTemplate.content = domesticInfo;
+  getUnDomesticInfo().then(unDomesticInfo => {
+    console.log("[ domesticInfo ]-35" + unDomesticInfo)
+    tileTemplate.content = unDomesticInfo;
     $done(tileTemplate);
   });
 }
