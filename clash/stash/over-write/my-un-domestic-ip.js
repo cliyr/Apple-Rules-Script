@@ -30,19 +30,32 @@ function getUnDomesticInfo() {
 /**
  * @description: 整合信息，立即执行
  */
-function getInfo() {
+async function getInfo() {
   const tileTemplate = {
     title: "当前国外 IP 及所属地区",
     content: "",
     backgroundColor: "#663399",
     icon: "network",
   };
-  console.log('当前国外 IP 及所属地区 --- 查询开始')
-  getUnDomesticInfo().then((unDomesticInfo) => {
-    console.log("[ domesticInfo ]-35" + unDomesticInfo);
-    tileTemplate.content = unDomesticInfo;
-    $done(tileTemplate);
-  });
+  console.log("当前国外 IP 及所属地区 --- 查询开始");
+  // getUnDomesticInfo().then((unDomesticInfo) => {
+  //   console.log("[ domesticInfo ]-35" + unDomesticInfo);
+  //   tileTemplate.content = unDomesticInfo;
+  //   $done(tileTemplate);
+  // });
+  await Promise.all([getUnDomesticInfo()])
+    .then(([unDomesticInfo]) => {
+      console.log("[ domesticInfo ]-35" + unDomesticInfo);
+      tileTemplate.content = unDomesticInfo;
+    })
+    .catch((err) => {
+      console.log("🎉国外 err: " + err);
+      reject(err);
+    })
+    .finally(() => {
+      console.log("当前国外 IP 及所属地区 --- 查询结束");
+      $done(tileTemplate);
+    });
 }
 
 getInfo();
