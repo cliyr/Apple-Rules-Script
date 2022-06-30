@@ -4,6 +4,7 @@ $httpClient.get("https://forge.speedtest.cn/api/location/info", function (error,
   console.log("[🍎 response data ]" + '\n' + data);
   const dataObject = JSON.parse(data);
   let { country, country_code, province, city, query: ip } = dataObject;
+  console.log("[ country ]-7" + country)
   country = country_code == "CN" ? "中国" : decodeURI(country);// 国家
   province = decodeURI(province);// 省份
   city = decodeURI(city);// 城市
