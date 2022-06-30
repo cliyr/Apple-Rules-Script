@@ -1,12 +1,10 @@
 console.log('代理 IP 查询 ---- 开始');
 $httpClient.get("http://ip-api.com/json/?lang=zh-CN", function (error, response, data) {
-  console.log("[🎉 dataObject ]" + dataObject);
+  console.log("[🎉 dataObject ]" + data);
   const dataObject = JSON.parse(data);
-  let { country, regionName, city, query } = dataObject;
-  // console.log("[ country - old ]-5" + country)
-  // if(countryCode === "CN") {
-  //   country = "中国"
-  // }
+  let { country, countryCode, regionName, city, query } = dataObject;
+  console.log("[ country - old ]-5" + country);
+  country = countryCode == "CN" ? "中国" : country;
   console.log("[ country - new ]-6" + country)
   const region = `地区：${country} ${regionName} ${city}`;
   const ip = `IP：${query}`;
