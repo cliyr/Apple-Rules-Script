@@ -17,7 +17,7 @@ function getUnDomesticInfo() {
           // 国外 IP 信息
           const infoFlag = `${line}国外${line}`;
           const unDomesticInfo = `${infoFlag}\n${ip}\n${region}`;
-          console.log("[ resolve unDomesticInfo ]-18" + unDomesticInfo);
+          console.log("[ resolve unDomesticInfo ]-18" + "\n" + unDomesticInfo);
           resolve(unDomesticInfo);
         }
       )
@@ -44,7 +44,7 @@ async function getInfo() {
   //   $done(tileTemplate);
   // });
   await Promise.all([getUnDomesticInfo()])
-    .then(([unDomesticInfo]) => {
+    .then((unDomesticInfo) => {
       console.log("[ domesticInfo ]-35" + unDomesticInfo);
       tileTemplate.content = unDomesticInfo;
     })
