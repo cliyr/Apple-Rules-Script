@@ -2,8 +2,10 @@ $httpClient.get("http://ip-api.com/json/?lang=zh-CN", function (error, response,
   console.log("[🎉 dataObject ]" + dataObject)
   const dataObject = JSON.parse(data);
   let { country, countryCode, regionName, city, query } = dataObject;
-  console.log("[ country - old ]-5", country)
-  country = countryCode === "CN" ? "中国" : country;
+  console.log("[ country - old ]-5" + country)
+  if(countryCode === "CN") {
+    country = "中国"
+  }
   console.log("[ country - new ]-6" + country)
   const region = `地区：${country} ${regionName} ${city}`;
   const ip = `IP：${query}`;
