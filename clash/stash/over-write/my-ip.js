@@ -43,7 +43,10 @@ function getUnDomesticInfo() {
       const infoFlag = `${line}国外${line}`;
       const unDomesticInfo = `${infoFlag}\n${ip}\n${region}`;
       resolve(unDomesticInfo);
-    });
+    }).catch(err => {
+      reject(err);
+      console.log('🎉国外 err: ' + err);
+    })
   })
 }
 /**
@@ -67,15 +70,21 @@ function getDomesticInfo() {
  * @description: 整合信息，立即执行
  */
 function getInfo() {
+  const tileTemplate = {
+    title: "当前 IP 及所属地区",
+    content: '',
+    backgroundColor: "#663399",
+    icon: "network",
+  };
+
   getUnDomesticInfo().then(unDomesticInfo => {
+    tileTemplate.content = unDomesticInfo;
     getDomesticInfo().then(domesticInfo => {
-      const contentResult = `${unDomesticInfo}\n${domesticInfo}`;
-      $done({
-        title: "当前 IP 及所属地区",
-        content: contentResult,
-        backgroundColor: "#663399",
-        icon: "network",
-      })
+      tileTemplate.content += `\n${domesticInfo}`;
+      $done(tileTemplate);
+    }).catch(err => {
+      console.log('🎉国内 err: ' + err);
+      $done(tileTemplate);
     })
   })
 }
