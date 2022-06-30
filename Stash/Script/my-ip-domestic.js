@@ -6,8 +6,11 @@ $httpClient.get("https://forge.speedtest.cn/api/location/info", function (error,
   let { country, country_code, province, city, query: ip } = dataObject;
   console.log("[ country ]-7" + country)
   country = country_code == "CN" ? "中国" : country;// 国家
+  console.log("[ country ]-9" + country)
   const region = `地区：${country} ${regionName} ${city}`;
+  console.log("[ region ]-10" + region)
   ip = `IP：${ip}`;
+  console.log("[ ip ]-12" + ip)
   const contentResult = `${ip}\n${region}`;
   console.log("[🍎 contentResult ]" + '\n'+ contentResult)
   console.log(`${hashLine}🎉直连 IP 查询 ---- 结束${hashLine}`);
