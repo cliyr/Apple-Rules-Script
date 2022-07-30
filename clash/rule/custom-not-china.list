@@ -23,6 +23,8 @@ DOMAIN-SUFFIX, deepl.com
 DOMAIN-SUFFIX, codepen.io
 DOMAIN-SUFFIX, workers.dev
 DOMAIN-SUFFIX, jsdelivr.net
+## Downie 软件更新服务
+DOMAIN-SUFFIX, charliemonroe.net
 
 
 # 域名关键字匹配
