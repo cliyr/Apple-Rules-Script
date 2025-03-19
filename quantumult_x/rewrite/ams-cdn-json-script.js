@@ -30,7 +30,7 @@ try
   navigationAll=json[0].navigationAll;
   json[0].navigationAll=navigationAll.filter(item => item.functionId !== "home"&& item.functionId !== "message" && item.functionId !== "me");
   
-  changedBody = JSON.stringify(obj);
+  changedBody = JSON.stringify(json);
   
   console.log(changedBody);
 }
