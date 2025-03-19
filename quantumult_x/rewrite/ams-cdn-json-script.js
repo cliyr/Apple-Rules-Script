@@ -20,15 +20,11 @@
 var body = $response.body;
 try
 {
-  var json = JSON.parse(body);
-
-  // 获取数据
-  let data = json[0].content[1].data;
+  var data = JSON.parse(body);
   
-  json[0].content[1].data = data.filter(item => item.title !== "乘车码" && item.title !== "充值");
+  data[0].content[1].data = data[0].content[1].data.filter(item => item.functionId == "cf_tft_qrcode" || item.functionId == "cf_tft_recharge");
   
-  navigationAll=json[0].navigationAll;
-  json[0].navigationAll=navigationAll.filter(item => item.functionId !== "home"&& item.functionId !== "message" && item.functionId !== "me");
+  data[0].navigationAll=navigationAll.filter(item => item.functionId == "home|| item.functionId == "message" || item.functionId == "me");
   
   changedBody = JSON.stringify(json);
   
