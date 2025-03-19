@@ -27,12 +27,13 @@ try
   data[0].navigationAll=navigationAll.filter(item => item.functionId == "home|| item.functionId == "message" || item.functionId == "me");
   
   changedBody = JSON.stringify(json);
-  
   console.log(changedBody);
+  $notify("结果","",changedBody);
 }
 catch(ex)
 {
-   console.log("异常："+ex.message);
+   console.log(ex.message);
+   $notify("异常","",ex.message);
 }
 body={};
 $done(body);
