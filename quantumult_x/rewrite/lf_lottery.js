@@ -13,6 +13,7 @@ const body = ``;
 const bucode=``;
 
 //API格式：longfor_lottery.js#authtoken=AAA&cookie=BBB&gaiaapikey=CCC&DXRiskToken=DDDD&iswx=1
+const sourcePath = $environment.sourcePath;
 const sourceUrl = new URL(sourcePath);
 const sourceHash = sourceUrl.hash;
 // 获取脚本参数
