@@ -13,61 +13,72 @@ const body = ``;
 const bucode=``;
 
 //API格式：longfor_lottery.js#authtoken=AAA&cookie=BBB&gaiaapikey=CCC&DXRiskToken=DDDD&iswx=1
-const sourcePath = $environment.sourcePath;
-const sourceUrl = new URL(sourcePath);
-const sourceHash = sourceUrl.hash;
-// 获取脚本参数
-const scriptParams = new URLSearchParams(sourceHash.substring(1));
-
-if (scriptParams.has("authtoken")) {
-    authtoken = scriptParams.get("authtoken");
-}
-else
+try
 {
-    $notify("龙湖Gallery", "龙珠抽取", `没有参数：authtoken`);
-}
-if (scriptParams.has("cookie")) {
-    cookie = scriptParams.get("cookie");
-}
-else
-{
-    $notify("龙湖Gallery", "龙珠抽取", `没有参数：cookie`);
-}
-if (scriptParams.has("gaiaapikey")) {
-    xgaiaapikey = scriptParams.get("gaiaapikey");
-}
-else
-{
-    $notify("龙湖Gallery", "龙珠抽取", `没有参数：gaiaapikey`);
-}
-if (scriptParams.has("DXRiskToken")) {
-    dxRiskToken = scriptParams.get("DXRiskToken");
-}
-else
-{
-    $notify("龙湖Gallery", "龙珠抽取", `没有参数：DXRiskToken`);
-}
-if (scriptParams.has("iswx")) {
-   const iswx = scriptParams.get("iswx");
-   if(iswx == '1')
-    {
-        ua = 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.50(0x1800323d) NetType/WIFI Language/zh_CN miniProgram/wx50282644351869da';
-        channel='C2';
-        bucode=`C20400`;
-        body = `{"component_no":"CE13Q42B02A04I6W","activity_no":"AP25Z07390KXCWDP"}`;
+    const sourcePath = $environment.sourcePath;
+    const sourceUrl = new URL(sourcePath);
+    const sourceHash = sourceUrl.hash;
+    // 获取脚本参数
+    const scriptParams = new URLSearchParams(sourceHash.substring(1));
+    
+    if (scriptParams.has("authtoken")) {
+        authtoken = scriptParams.get("authtoken");
     }
     else
-     {
-       ua = `Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 &MAIAWebKit_iOS_com.longfor.supera_1.16.8_202508121148_Default_3.2.4.9`;
-       channel='L0';
-       bucode=`L00602`;
-       body = `{"component_no":"CC16118V10V3U9HA","activity_no":"AP25F082V945THJE"}`;
-     }
+    {
+        $notify("龙湖Gallery", "龙珠抽取", `没有参数：authtoken`);
+    }
+    if (scriptParams.has("cookie")) {
+        cookie = scriptParams.get("cookie");
+    }
+    else
+    {
+        $notify("龙湖Gallery", "龙珠抽取", `没有参数：cookie`);
+    }
+    if (scriptParams.has("gaiaapikey")) {
+        xgaiaapikey = scriptParams.get("gaiaapikey");
+    }
+    else
+    {
+        $notify("龙湖Gallery", "龙珠抽取", `没有参数：gaiaapikey`);
+    }
+    if (scriptParams.has("DXRiskToken")) {
+        dxRiskToken = scriptParams.get("DXRiskToken");
+    }
+    else
+    {
+        $notify("龙湖Gallery", "龙珠抽取", `没有参数：DXRiskToken`);
+    }
+    if (scriptParams.has("iswx")) {
+       const iswx = scriptParams.get("iswx");
+       if(iswx == '1')
+        {
+            ua = 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.50(0x1800323d) NetType/WIFI Language/zh_CN miniProgram/wx50282644351869da';
+            channel='C2';
+            bucode=`C20400`;
+            body = `{"component_no":"CE13Q42B02A04I6W","activity_no":"AP25Z07390KXCWDP"}`;
+        }
+        else
+         {
+           ua = `Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 &MAIAWebKit_iOS_com.longfor.supera_1.16.8_202508121148_Default_3.2.4.9`;
+           channel='L0';
+           bucode=`L00602`;
+           body = `{"component_no":"CC16118V10V3U9HA","activity_no":"AP25F082V945THJE"}`;
+         }
+    }
+    else
+    {
+        $notify("龙湖Gallery", "龙珠抽取", `没有参数：iswx`);
+    }
 }
-else
+catch(e)
 {
-    $notify("龙湖Gallery", "龙珠抽取", `没有参数：iswx`);
+    console.log('初始化参数异常：'+e.message);
+    console.log(e.stack);
+    $done();
+    return;
 }
+
 
 const headers = {
 'x-gaia-api-key' : xgaiaapikey,
