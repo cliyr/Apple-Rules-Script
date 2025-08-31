@@ -74,6 +74,10 @@ try
 catch(e)
 {
     console.log('初始化参数异常：'+e.message);
+    console.log("错误类型:", e.constructor.name); 
+    console.log("发生位置:", e.fileName || "未知"); // 文件名
+    console.log("行号:", e.lineNumber || "未知");   // 行号
+    console.log("列号:", e.columnNumber || "未知"); // 列号
     console.log(e.stack);
     $done();
     return;
