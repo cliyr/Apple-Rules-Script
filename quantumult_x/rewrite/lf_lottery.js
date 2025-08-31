@@ -16,11 +16,6 @@ const bucode=``;
 try
 {
     const sourcePath = $environment.sourcePath;
-    const sourcePathType= typeof sourcePath;
-     if (!sourcePath || sourcePathType !== 'string') {
-            throw new Error("源路径格式不正确:"+sourcePathType);
-        }
-    
     const sourceUrl = new URL(sourcePath);
     const sourceHash = sourceUrl.hash;
     // 获取脚本参数
@@ -31,28 +26,28 @@ try
     }
     else
     {
-        $notify("龙湖Gallery", "龙珠抽取", `没有参数：authtoken`);
+        throw new Error(`没有参数：authtoken`);
     }
     if (scriptParams.has("cookie")) {
         cookie = scriptParams.get("cookie");
     }
     else
     {
-        $notify("龙湖Gallery", "龙珠抽取", `没有参数：cookie`);
+        throw new Error(`没有参数：cookie`);
     }
     if (scriptParams.has("gaiaapikey")) {
         xgaiaapikey = scriptParams.get("gaiaapikey");
     }
     else
     {
-        $notify("龙湖Gallery", "龙珠抽取", `没有参数：gaiaapikey`);
+       throw new Error(`没有参数：gaiaapikey`);
     }
     if (scriptParams.has("DXRiskToken")) {
         dxRiskToken = scriptParams.get("DXRiskToken");
     }
     else
     {
-        $notify("龙湖Gallery", "龙珠抽取", `没有参数：DXRiskToken`);
+      throw new Error(`没有参数：DXRiskToken`);
     }
     if (scriptParams.has("iswx")) {
        const iswx = scriptParams.get("iswx");
@@ -73,7 +68,7 @@ try
     }
     else
     {
-        $notify("龙湖Gallery", "龙珠抽取", `没有参数：iswx`);
+        throw new Error(`没有参数：iswx`);
     }
 }
 catch(e)
