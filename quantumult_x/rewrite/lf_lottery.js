@@ -1,16 +1,13 @@
-/**
- * App龙珠抽取
- */
-
 const method = `POST`;
-const ua=``;
-const authtoken = ``;
-const cookie = ``;
-const xgaiaapikey = ``;
-const dxRiskToken = ``;
-const channel='';
-const body = ``;
-const bucode=``;
+var ua=``;
+var authtoken = ``;
+var cookie = ``;
+var xgaiaapikey = ``;
+var dxRiskToken = ``;
+var channel='';
+var body = ``;
+var bucode=``;
+var app=``;
 
 //API格式：longfor_lottery.js#authtoken=AAA&cookie=BBB&gaiaapikey=CCC&DXRiskToken=DDDD&iswx=1
 //at=authtoken
@@ -62,6 +59,7 @@ try
             channel='C2';
             bucode=`C20400`;
             body = `{"component_no":"CE13Q42B02A04I6W","activity_no":"AP25Z07390KXCWDP"}`;
+            app='Wechat';
         }
         else
          {
@@ -69,6 +67,7 @@ try
            channel='L0';
            bucode=`L00602`;
            body = `{"component_no":"CC16118V10V3U9HA","activity_no":"AP25F082V945THJE"}`;
+            app='App';
          }
     }
     else
@@ -78,10 +77,10 @@ try
 }
 catch(e)
 {
-    console.log('↓↓↓↓↓↓↓ 龙湖龙珠抽取异常 ↓↓↓↓↓↓↓');
+    console.log('\r↓↓↓↓↓↓↓ 龙湖龙珠抽取异常 ↓↓↓↓↓↓↓'+app);
     console.log('初始化参数异常：'+e.message);
     console.log(e.stack);
-    console.log('↑↑↑↑↑↑↑ 龙湖龙珠抽取异常 ↑↑↑↑↑↑↑');
+    console.log('↑↑↑↑↑↑↑ 龙湖龙珠抽取异常 ↑↑↑↑↑↑↑\r'+app);
     $done();
     return;
 }
@@ -94,12 +93,12 @@ const headers = {
 'authtoken' : authtoken,
 'User-Agent' : ua,
 'bucode' : bucode,
+'channel' : channel,
 'Accept-Encoding' : `gzip, deflate, br`,
 'Host' : `gw2c-hw-open.longfor.com`,
 'Origin' : `https://llt.longfor.com`,
 'Sec-Fetch-Dest' : `empty`,
 'Connection' : `keep-alive`,
-'channel' : `L0`,
 'Sec-Fetch-Site' : `same-site`,
 'Content-Type' : `application/json`,
 'Referer' : `https://llt.longfor.com/`,
@@ -124,7 +123,7 @@ $task.fetch(signRequest).then(response1 => {
         if (result1.code !== "0000") 
         {
             // 签到失败，推送通知
-            $notify("龙湖Gallery", "龙珠抽取", `签到失败: ${result1.message || response1.body}`);
+            $notify("龙珠抽取", app, `签到失败: ${result1.message || response1.body}`);
             $done();
             return;
         }        
@@ -147,23 +146,23 @@ $task.fetch(signRequest).then(response1 => {
                     const data1 = result2.data?.prize_name || "未知奖品";
                     const data2 = result2.data?.reward_num ? Number(result2.data.reward_num).toFixed(1) : "未知数据";
                     const combinedData = `抽取完成: ${data1}：${data2}`;                    
-                    $notify("龙湖Gallery", "龙珠抽取", combinedData);
+                    $notify("龙珠抽取", app, combinedData);
                 } 
                 else 
                 {
                     // 抽取成功 API 返回错误码
-                    $notify("龙湖Gallery", "龙珠抽取", `抽取失败: ${result2.message || response2.body}`);
+                    $notify("龙珠抽取", app, `抽取失败: ${result2.message || response2.body}`);
                 }
             } 
             catch (e) 
             {
                 // 抽取API JSON 解析错误
-                $notify("龙湖Gallery", "龙珠抽取", `抽取异常: ${e.message}`);
+                $notify("龙珠抽取", app, `抽取异常: ${e.message}`);
             }
             $done();
         }, reason2 => {
             // 第二个 API 网络请求失败
-            $notify("龙湖Gallery", "龙珠抽取", `抽取请求失败: ${reason2.error}`);
+            $notify("龙珠抽取", app, `抽取请求失败: ${reason2.error}`);
             $done();
         });
         
@@ -171,11 +170,11 @@ $task.fetch(signRequest).then(response1 => {
     catch (e) 
     {
         // 签到 API JSON 解析错误
-        $notify("龙湖Gallery", "龙珠抽取", `签到异常: ${e.message}`);
+        $notify("龙珠抽取", app, `签到异常: ${e.message}`);
         $done();
     }
 }, reason1 => {
     // 第一个 API 网络请求失败
-    $notify("龙湖Gallery", "龙珠抽取", `签到请求失败: ${reason1.error}`);
+    $notify("龙珠抽取", app, `签到请求失败: ${reason1.error}`);
     $done();
 });
