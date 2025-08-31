@@ -16,6 +16,11 @@ const bucode=``;
 try
 {
     const sourcePath = $environment.sourcePath;
+    const sourcePathType= typeof sourcePath;
+     if (!sourcePath || sourcePathType !== 'string') {
+            throw new Error("源路径格式不正确:"+sourcePathType);
+        }
+    
     const sourceUrl = new URL(sourcePath);
     const sourceHash = sourceUrl.hash;
     // 获取脚本参数
