@@ -13,6 +13,11 @@ const body = ``;
 const bucode=``;
 
 //API格式：longfor_lottery.js#authtoken=AAA&cookie=BBB&gaiaapikey=CCC&DXRiskToken=DDDD&iswx=1
+//at=authtoken
+//ck=cookie
+//gak=gaiaapikey
+//drt=DXRiskToken
+//iw=iswx
 try
 {
     const sourcePath = $environment.sourcePath;
@@ -21,36 +26,36 @@ try
     // 获取脚本参数
     const scriptParams = new URLSearchParams(sourceHash.substring(1));
     
-    if (scriptParams.has("authtoken")) {
-        authtoken = scriptParams.get("authtoken");
+    if (scriptParams.has("at")) {
+        authtoken = scriptParams.get("at");
     }
     else
     {
-        throw new Error(`没有参数：authtoken`);
+        throw new Error(`没有参数：at`);
     }
-    if (scriptParams.has("cookie")) {
-        cookie = scriptParams.get("cookie");
-    }
-    else
-    {
-        throw new Error(`没有参数：cookie`);
-    }
-    if (scriptParams.has("gaiaapikey")) {
-        xgaiaapikey = scriptParams.get("gaiaapikey");
+    if (scriptParams.has("ck")) {
+        cookie = scriptParams.get("ck");
     }
     else
     {
-       throw new Error(`没有参数：gaiaapikey`);
+        throw new Error(`没有参数：ck`);
     }
-    if (scriptParams.has("DXRiskToken")) {
-        dxRiskToken = scriptParams.get("DXRiskToken");
+    if (scriptParams.has("gak")) {
+        xgaiaapikey = scriptParams.get("gak");
     }
     else
     {
-      throw new Error(`没有参数：DXRiskToken`);
+       throw new Error(`没有参数：gak`);
     }
-    if (scriptParams.has("iswx")) {
-       const iswx = scriptParams.get("iswx");
+    if (scriptParams.has("drt")) {
+        dxRiskToken = scriptParams.get("drt");
+    }
+    else
+    {
+      throw new Error(`没有参数：drt`);
+    }
+    if (scriptParams.has("iw")) {
+       const iswx = scriptParams.get("iw");
        if(iswx == '1')
         {
             ua = 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.50(0x1800323d) NetType/WIFI Language/zh_CN miniProgram/wx50282644351869da';
@@ -68,17 +73,15 @@ try
     }
     else
     {
-        throw new Error(`没有参数：iswx`);
+        throw new Error(`没有参数：iw`);
     }
 }
 catch(e)
 {
+    console.log('↓↓↓↓↓↓↓ 龙湖龙珠抽取异常 ↓↓↓↓↓↓↓');
     console.log('初始化参数异常：'+e.message);
-    console.log("错误类型:", e.constructor.name); 
-    console.log("发生位置:", e.fileName || "未知"); // 文件名
-    console.log("行号:", e.lineNumber || "未知");   // 行号
-    console.log("列号:", e.columnNumber || "未知"); // 列号
     console.log(e.stack);
+    console.log('↑↑↑↑↑↑↑ 龙湖龙珠抽取异常 ↑↑↑↑↑↑↑');
     $done();
     return;
 }
